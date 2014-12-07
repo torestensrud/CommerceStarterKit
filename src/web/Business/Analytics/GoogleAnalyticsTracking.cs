@@ -15,7 +15,7 @@ using System.Web;
 using EPiCode.GoogleAnalyticsTracking;
 using EPiCode.GoogleAnalyticsTracking.FieldObjects;
 using EPiServer.GoogleAnalytics.Commerce.Helpers;
-using EPiServer.GoogleAnalytics.Web.Tracking.Ecommerce;
+using EPiServer.GoogleAnalytics.Commerce.Web.Tracking;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Orders;
 
