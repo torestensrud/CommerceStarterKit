@@ -1,6 +1,8 @@
 # Commerce Starterkit
 From the Wiki: [About the Starter Kit](https://github.com/OXXAS/CommerceStarterKit/wiki) | [Feature List](https://github.com/OXXAS/CommerceStarterKit/wiki/features) | [FAQ](https://github.com/OXXAS/CommerceStarterKit/wiki/FAQ)
 
+![Starter Kit Logo](https://github.com/OXXAS/CommerceStarterKit/raw/master/doc/img/logo/logo-500px.png)
+
 ## Getting Started
 1. Clone the repository
 2. Download the databases from [CommerceStarterKit-Database](https://github.com/OXXAS/CommerceStarterKit-Database/tree/master/Databases) ([download zip file](https://github.com/OXXAS/CommerceStarterKit-Database/blob/master/Databases/CommerceStarterKit.zip?raw=true))
@@ -79,4 +81,31 @@ By default, the following is tracked:
 * Payment
 * Wine Configurable Search Block 
 
+# Nice to Know
+Various helpful stuff
+
+## How to Start Commerce Manager
+When you start the project in Visual Studio, it will only start the the default site (the designated Startup Project). This is typically the web site and not Commerce Manager.
+
+To start Commerce Manager, right click the CommerceStarterKit.Commerce project in Visual Studio, View, View in Browser (or Ctrl+Shift+W)
+
+## How to Upgrade the Databases
+Now and then the CMS and Commerce databases need to be upgraded. This is typically done using the `update-epidatabase` command in the Package Manager Console in Visual Studio. 
+
+The latest version of the code is synced with the downloadable databases. If you haven't changed any content (that you'd care to keep), just download new versions and replace the databases you've got.
+
+If you update these databases yourself using the `update-epidatabase` command
+from the Package Manager Console, you need to change the connectionstring to
+a full path instead of the "magic" one using the DataDirectory setting:
+
+	Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|CommerceStarterKit-Web.mdf; ... 
+
+The `update-epidatabase` command will read the `connectionstrings.config` file and try to locate the databases in the `app_Data` directory below your web site. Since the DataDirectory is changed in memory during the startup of the web sites, they know how to find the databases. This is not the case for the `update-epidatabase` command.
+
+Change both AttachDbFilename settings:
+
+	AttachDbFilename=c:\path\to\your\CommerceStarterKit-Web.mdf and
+	AttachDbFilename=c:\path\to\your\CommerceStarterKit-CM.mdf
+
+After you have run the `update-epidatabase` you can revert the connectionstring changes.
 
