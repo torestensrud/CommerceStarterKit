@@ -153,6 +153,31 @@
     <Content Include="modules\epicode.newsletter\plugin\WorkItemProviders\TextImportProvider.ascx" />
     <Content Include="modules\epicode.newsletter\plugin\WorkItemProviders\TextRemoveProvider.ascx" />
     <Content Include="modules\epicode.newsletter\preview.aspx" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\1.0.0.75\ClientResources\EditView\Event.js" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\1.0.0.75\ClientResources\EditView\QueryString.js" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\1.0.0.75\ClientResources\EditView\TimePeriod.js" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\EmbeddedLangFiles\DisplayChannelCriterion.xml" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\EmbeddedLangFiles\DownloadCriterion.xml" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\EmbeddedLangFiles\EventCriterion.xml" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\EmbeddedLangFiles\IPRangeCriterion.xml" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\EmbeddedLangFiles\OSBrowserCriterion.xml" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\EmbeddedLangFiles\QueryStringCriterion.xml" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\EmbeddedLangFiles\RoleCriterion.xml" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\EmbeddedLangFiles\SelectedLanguageCriterion.xml" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\EmbeddedLangFiles\TimeOnSiteCriterion.xml" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\EmbeddedLangFiles\TimePeriodCriterion.xml" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\EmbeddedLangFiles\XFormCriterion.xml" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\Views\Shared\EditorTemplates\DisplayChannelModel.ascx" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\Views\Shared\EditorTemplates\DownloadModel.ascx" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\Views\Shared\EditorTemplates\EventModel.ascx" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\Views\Shared\EditorTemplates\IPRangeModel.ascx" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\Views\Shared\EditorTemplates\OSBrowserModel.ascx" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\Views\Shared\EditorTemplates\QueryStringModel.ascx" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\Views\Shared\EditorTemplates\RoleModel.ascx" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\Views\Shared\EditorTemplates\SelectedLanguageModel.ascx" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\Views\Shared\EditorTemplates\TimeOnSiteModel.ascx" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\Views\Shared\EditorTemplates\TimePeriodModel.ascx" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\Views\Shared\EditorTemplates\XFormModel.ascx" />
     <Content Include="Plugins\CommerceTools\Prices\UpdatePrices.aspx" />
     <Content Include="Plugins\CommerceTools\static\css\bootstrap-datepicker.css" />
     <Content Include="Plugins\CommerceTools\static\css\bootstrap-datepicker3.css" />
@@ -192,6 +217,11 @@
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics.Commerce\web.config" />
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics.Commerce\module.config" />
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics.Commerce\EPiServer.GoogleAnalytics.Commerce.zip" />
+    <Content Include="modules\_protected\EPiServer.Packaging.UI\web.config" />
+    <Content Include="modules\_protected\EPiServer.Packaging.UI\EPiServer.Packaging.UI.zip" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\module.config" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\web.config" />
+    <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\EPiServer.VisitorGroupsCriteriaPack.zip" />
     <None Include="Plugins\CommerceTools\static\scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Plugins\CommerceTools\static\scripts\jquery-1.9.0.js" />
     <Content Include="Plugins\CommerceTools\static\scripts\jquery-1.9.0.min.js" />
@@ -756,6 +786,9 @@
     <Reference Include="EPiServer.Packaging.CmdAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPiServer.Packaging.3.2.0\lib\net45\EPiServer.Packaging.CmdAPI.dll</HintPath>
     </Reference>
+    <Reference Include="EPiServer.Packaging.UI">
+      <HintPath>..\..\packages\EPiServer.Packaging.UI.3.2.0\lib\net45\EPiServer.Packaging.UI.dll</HintPath>
+    </Reference>
     <Reference Include="EPiServer.Shell">
       <HintPath>..\..\packages\EPiServer.Framework.7.18.0\lib\net45\EPiServer.Shell.dll</HintPath>
       <Private>True</Private>
@@ -767,6 +800,10 @@
     <Reference Include="EPiServer.UI">
       <HintPath>..\..\packages\EPiServer.CMS.UI.Core.7.17.0\lib\net45\EPiServer.UI.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="EPiServer.VisitorGroupsCriteriaPack, Version=1.0.1.7514, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EPiServer.VisitorGroupsCriteriaPack.1.0.1.7514\lib\EPiServer.VisitorGroupsCriteriaPack.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.Web.WebControls">
       <HintPath>..\..\packages\EPiServer.CMS.Core.7.18.0\lib\net45\EPiServer.Web.WebControls.dll</HintPath>
