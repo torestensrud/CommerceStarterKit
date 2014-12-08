@@ -130,16 +130,20 @@ namespace OxxCommerceStarterKit.Web.Controllers
 		/// <param name="referer"></param>
 		protected void HandleOnLoad(HttpContextBase context, Uri urlNotFound, Uri referer)
 		{
+            // TODO: This copy should be removed. The 404 should be extended to work without
+            // a Page object.
+
 			if (_log.IsDebugEnabled)
 			{
 				_log.DebugFormat("Trying to handle 404 for \"{0}\" (Referrer: \"{1}\")", urlNotFound, referer);
 			}
 			CustomRedirectHandler current = CustomRedirectHandler.Current;
-			CustomRedirect customRedirect = current.CustomRedirects.Find(HttpUtility.HtmlEncode(urlNotFound.AbsoluteUri));
+			CustomRedirect customRedirect = current.CustomRedirects.Find(new Uri(urlNotFound.AbsoluteUri));
 			string str = HttpUtility.HtmlEncode(urlNotFound.PathAndQuery);
 			if (customRedirect == null)
 			{
-				customRedirect = current.CustomRedirects.Find(str);
+                // Check relative uri
+                customRedirect = current.CustomRedirects.Find(new Uri(urlNotFound.PathAndQuery));
 			}
 			if (customRedirect != null)
 			{
