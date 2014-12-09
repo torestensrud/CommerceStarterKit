@@ -9,7 +9,8 @@ From the Wiki: [About the Starter Kit](https://github.com/OXXAS/CommerceStarterK
 3. Unzip the databases to the /db/ folder
 4. Open the solution in Visual Studio 2013
 5. Run it
-6. Configure dependencies for more features 
+6. Default admin account for web and manager sites is: **admin \ store**
+7. Configure dependencies for more features 
 
 ## Configuring Dependencies
 The Commerce Starter Kit has these dependencies:
