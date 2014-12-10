@@ -184,11 +184,6 @@
     <Content Include="modules\epicode.newsletter\content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="modules\epicode.newsletter\content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="modules\epicode.newsletter\content\css\newsletterstyle.less" />
-    <Content Include="modules\_protected\EPiServer.GoogleAnalytics\web.config" />
-    <Content Include="modules\_protected\EPiServer.GoogleAnalytics\Views\Web.config" />
-    <Content Include="modules\_protected\EPiServer.GoogleAnalytics\module.config" />
-    <Content Include="modules\_protected\EPiServer.GoogleAnalytics\EPiServerGoogleAnalytics.config" />
-    <Content Include="modules\_protected\EPiServer.GoogleAnalytics\EPiServer.GoogleAnalytics.zip" />
     <Content Include="modules\_protected\EPiServer.Packaging.UI\web.config" />
     <Content Include="modules\_protected\EPiServer.Packaging.UI\EPiServer.Packaging.UI.zip" />
     <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\module.config" />
@@ -197,6 +192,11 @@
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics.Commerce\web.config" />
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics.Commerce\module.config" />
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics.Commerce\EPiServer.GoogleAnalytics.Commerce.zip" />
+    <Content Include="modules\_protected\EPiServer.GoogleAnalytics\web.config" />
+    <Content Include="modules\_protected\EPiServer.GoogleAnalytics\Views\Web.config" />
+    <Content Include="modules\_protected\EPiServer.GoogleAnalytics\module.config" />
+    <Content Include="modules\_protected\EPiServer.GoogleAnalytics\EPiServerGoogleAnalytics.config" />
+    <Content Include="modules\_protected\EPiServer.GoogleAnalytics\EPiServer.GoogleAnalytics.zip" />
     <None Include="Plugins\CommerceTools\static\scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Plugins\CommerceTools\static\scripts\jquery-1.9.0.js" />
     <Content Include="Plugins\CommerceTools\static\scripts\jquery-1.9.0.min.js" />
@@ -723,9 +723,9 @@
       <HintPath>..\..\packages\EPiServer.Framework.7.18.0\lib\net45\EPiServer.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EPiServer.GoogleAnalytics, Version=1.5.0.7516, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="EPiServer.GoogleAnalytics, Version=1.6.0.7518, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\EPiServer.GoogleAnalytics.dll</HintPath>
+      <HintPath>..\..\packages\EPiServer.GoogleAnalytics.1.6.0.7518\lib\EPiServer.GoogleAnalytics.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.GoogleAnalytics.Commerce, Version=1.6.0.7518, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
