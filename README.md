@@ -29,7 +29,7 @@ You will have a hard time using the starter kit without Find.
 3. Verify that the product list is showing correctly by visiting the Wine list (http://localhost:49883/en/wine/all-wines/)
 
 ### DIBS
-The payment step of the checkout requires a DIBS demo account. If your company does not already have a demo account with DIBS, you need to sign up for one: [http://www.dibspayment.com/](http://www.dibspayment.com/) The starter kit is using the [DIBS D2 platform](http://tech.dibspayment.com/dibs_payment_window).
+The payment step of the checkout requires a DIBS demo account. If your company does not already have a demo account with DIBS, you need to sign up for one: [http://www.dibspayment.com/demo-signup](http://www.dibspayment.com/demo-signup) The starter kit is using the [DIBS D2 platform](http://tech.dibspayment.com/dibs_payment_window).
 
 You need the following settings from your DIBS account:
 
