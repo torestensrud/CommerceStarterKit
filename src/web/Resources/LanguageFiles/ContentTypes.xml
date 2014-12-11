@@ -381,7 +381,7 @@
 				</properties>
 			</viddlerblock>
 			<fashionproductcontent>
-				<name>Produkt</name>
+				<name>Fashionprodukt</name>
 				<description>Produkt med redigerbare felter</description>
 				<properties>
 					<descriptivecolor>
@@ -844,7 +844,7 @@
 				</properties>
 			</viddlerblock>
 			<fashionproductcontent>
-				<name>Product</name>
+				<name>Fashion Product</name>
 				<description>Product with editable fields</description>
 				<properties>
 					<descriptivecolor>
@@ -872,7 +872,7 @@
 						<caption>Show in product list</caption>
 					</showinlist>
 					<newitemtext>
-						<caption>New item text</caption>
+						<caption>Campaign text</caption>
 					</newitemtext>
 					<sizeandfit>
 						<caption>Size and fit</caption>
@@ -902,7 +902,7 @@
 			</newsletterunsubscribepage>
 			<newsletterpage>
 				<name>Newsletter</name>
-				<description>Put together a page and send it to users</description>
+				<description>Send a page to email recipients</description>
 				<properties>
 					<title>
 						<caption>Title</caption>
