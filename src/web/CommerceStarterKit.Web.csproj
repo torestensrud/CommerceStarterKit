@@ -374,6 +374,10 @@
     <Content Include="Scripts\js\Components\SizeGuideDialog.js" />
     <Content Include="Scripts\js\Oxx\HotSpotsEditor.js" />
     <Content Include="Scripts\js\Components\WebComponent\HotSpot.js" />
+    <Content Include="Scripts\jwplayer\jwplayer.js" />
+    <Content Include="Scripts\jwplayer\player.swf" />
+    <Content Include="Scripts\jwplayer\preview.jpg" />
+    <Content Include="Scripts\jwplayer\video.mp4" />
     <Content Include="Scripts\libraries\accounting.js" />
     <Content Include="Scripts\libraries\accounting.min.js" />
     <Content Include="Scripts\libraries\angular-resource.js" />
@@ -550,6 +554,7 @@
     <Content Include="Views\Shared\Blocks\HtmlBlock.Full.cshtml" />
     <Content Include="Views\Shared\SetupWarning.cshtml" />
     <Content Include="Views\WineProductSearchBlock\FindError.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\VideoFile.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1076,9 +1081,11 @@
     <Compile Include="Controllers\Admin\DeveloperToolsController.cs" />
     <Compile Include="Controllers\BasePartialContentController.cs" />
     <Compile Include="Controllers\FashionProductPartialController.cs" />
+    <Compile Include="Controllers\VideoFileController.cs" />
     <Compile Include="EditorDescriptors\TinyMcePlugins\AllowExtendedAttributes.cs" />
     <Compile Include="Extensions\PriceExtensions.cs" />
     <Compile Include="Extensions\UrlExtentions.cs" />
+    <Compile Include="Models\Files\VideoFile.cs" />
     <Compile Include="Models\ViewModels\Email\NotificationSettings.cs" />
     <Compile Include="Models\ViewModels\Payment\CancelPaymentViewModel.cs" />
     <Compile Include="Controllers\WineProductSearchBlockController.cs" />

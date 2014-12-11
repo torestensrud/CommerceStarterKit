@@ -16,5 +16,7 @@ namespace OxxCommerceStarterKit.Web.Models.ViewModels
 		public string CoverImageUrl { get; set; }
 		public bool HasCoverImage { get; set; }
 		public string IframeId { get; set; }
+	    // Local video
+        public string Url { get; set; }
 	}
 }
