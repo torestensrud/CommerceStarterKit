@@ -1166,9 +1166,6 @@ input[type=password] {
 .navbar-default .navbar-nav > .active > a:focus {
   background-color: #242520;
 }
-.article-page {
-  padding-right: 20%;
-}
 @media only screen and (max-width: 767px) {
   .article-page {
     padding-right: 0;
