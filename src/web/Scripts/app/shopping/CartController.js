@@ -5,7 +5,7 @@
 
 	"use strict";
 
-	productApp.controller("CartController", function ($scope, handleCartService, $sce) {
+	productApp.controller("CartController",['$scope', 'handleCartService', '$sce', function ($scope, handleCartService, $sce) {
 
 		$scope.imageUrl = '';
 
@@ -455,9 +455,6 @@
 				callback();
 			}
 		}
-
-
-
-	});
+	}]);
 
 })(jQuery, window.productApp, window.commercestarterkit);

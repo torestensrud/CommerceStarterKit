@@ -5,7 +5,7 @@
 
 	"use strict";
 
-	productApp.factory("handleCartService", function($resource) {
+	productApp.factory("handleCartService", ['$resource', function($resource) {
 		return {
 		    getItems: function (language, name) {
 		        var provider = $resource("/" + language + "/api/cart/getitems/", {}, {
@@ -106,7 +106,7 @@
 				return response;
 			}
 		};
-	});
+	}]);
 
 
 })(jQuery, window.productApp);

@@ -5,7 +5,8 @@
 
     "use strict";
 
-    productApp.controller('ProductAndSearchController', function ($scope, $location, $window, productService, articleService) {
+    productApp.controller('ProductAndSearchController',['$scope', '$location', '$window', 'productService', 'articleService',
+    function ($scope, $location, $window, productService, articleService) {
         $scope.selectedProductCategories = [];
         $scope.selectedColorFacets = [];
         $scope.selectedSizeFacets = [];
@@ -375,7 +376,7 @@
             setNewProductDataAndUpdate();
         };
 
-    });
+    }]);
 
 
 })(jQuery, window.productApp);

@@ -5,7 +5,7 @@
 
 	"use strict";
 
-	productApp.factory("productService", function ($http, $q) {
+	productApp.factory("productService", ['$http', '$q', function ($http, $q) {
 		return {
 		    get: function (productData, language, pageNumber, pageSize) {
 				var deferred = $q.defer();
@@ -21,6 +21,6 @@
 			}
 		};
 
-	});
+	}]);
 
 })(jQuery, window.productApp);

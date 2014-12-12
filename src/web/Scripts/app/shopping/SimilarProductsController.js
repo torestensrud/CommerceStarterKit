@@ -3,7 +3,7 @@
 /* global angular:false */
 (function($, productApp) {
 
-    productApp.controller('SimilarProductsController', function ($scope) {
+    productApp.controller('SimilarProductsController',['$scope', function ($scope) {
         $scope.init = function (id,language) {
             $scope.language = language;
 			$scope.visible = false;
@@ -22,9 +22,7 @@
                 initSimilarProducts();
             }
         }
-    });
-
-   
+    }]);
 
 })(jQuery, window.productApp);
 
