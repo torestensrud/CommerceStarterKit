@@ -24,7 +24,6 @@ using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.Logging;
 using EPiServer.ServiceLocation;
-using OxxCommerceStarterKit.Web.CustomLog;
 using OxxCommerceStarterKit.Web.Helpers;
 using OxxCommerceStarterKit.Web.Models.Blocks;
 using OxxCommerceStarterKit.Web.Models.Blocks.Contracts;
