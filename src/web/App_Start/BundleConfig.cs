@@ -64,7 +64,7 @@ namespace OxxCommerceStarterKit.Web
 				"~/Scripts/js/components/SizeGuideDialog.js",
 				"~/Scripts/js/components/HelpDialog.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
 				"~/Content/css/jqueryui/jquery-ui-1.10.4.custom.min.css",
 				"~/Content/bootstrap.min.css",
 				"~/Content/easyzoom.css",
