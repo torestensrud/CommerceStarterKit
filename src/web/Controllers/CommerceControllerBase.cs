@@ -18,9 +18,10 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Commerce.SpecializedProperties;
 using EPiServer.Core;
+using EPiServer.Logging;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Mvc;
-using log4net;
+
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Core;
@@ -78,7 +79,7 @@ namespace OxxCommerceStarterKit.Web.Controllers
    
 
    
-        protected static ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        protected static ILogger _log = LogManager.GetLogger();
 
         public void InitializeCatalogViewModel<TViewModel>(TViewModel model)
            where TViewModel : ICatalogViewModel<CatalogContentBase>

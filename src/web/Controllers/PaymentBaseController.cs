@@ -17,6 +17,7 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Core;
 using EPiServer.DataAccess;
+using EPiServer.Logging;
 using EPiServer.Security;
 using EPiServer.ServiceLocation;
 using Mediachase.BusinessFoundation.Data.Business;

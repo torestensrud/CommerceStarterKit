@@ -8,8 +8,7 @@ Copyright (C) 2013-2014 BV Network AS
 
 */
 
-using System.Reflection;
-using log4net;
+using EPiServer.Logging;
 using Mediachase.Commerce.Orders;
 using OxxCommerceStarterKit.Web.Services.Email.Models;
 
@@ -17,11 +16,11 @@ namespace OxxCommerceStarterKit.Web.Services.Email
 {
 	public class EmailService : IEmailService
 	{
-		private readonly ILog _log;
+		private readonly ILogger Log;
 
 		public EmailService()
 		{
-			_log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+			Log = LogManager.GetLogger();
 		}
 
 
@@ -39,18 +38,18 @@ namespace OxxCommerceStarterKit.Web.Services.Email
 				emailMessage.Body = body;
 				emailMessage.Token = passwordHash;
 				emailMessage.ResetUrl = resetUrl;
-				var result = EmailBase.SendEmail(emailMessage, _log);
+				var result = EmailBase.SendEmail(emailMessage, Log);
 				if (result.Success)
 				{
 					return true;
 				}
 				else
 				{
-					_log.Error(result.Exception);
+					Log.Error(result.Exception.Message,result.Exception);
 					return false;
 				}
 			}
-			_log.Error("Unable to get notification settings");
+			Log.Error("Unable to get notification settings");
 			return false;
 		}
 
@@ -67,18 +66,18 @@ namespace OxxCommerceStarterKit.Web.Services.Email
 				emailMessage.Header = mailSettings.MailHeader.ToString();
 				emailMessage.Footer = mailSettings.MailFooter.ToString();
 				emailMessage.Body = body;
-				var result = EmailBase.SendEmail(emailMessage, _log);
+				var result = EmailBase.SendEmail(emailMessage, Log);
 				if (result.Success)
 				{
 					return true;
 				}
 				else
 				{
-					_log.Error(result.Exception);
+					Log.Error(result.Exception.Message,result.Exception);
 					return false;
 				}
 			}
-			_log.Error("Unable to get notification settings");
+			Log.Error("Unable to get notification settings");
 			return false;
 		}
 
@@ -99,11 +98,11 @@ namespace OxxCommerceStarterKit.Web.Services.Email
 				}
 				else
 				{
-					_log.Error(result.Exception);
+					Log.Error(result.Exception.Message,result.Exception);
 					return false;
 				}
 			}
-			_log.Error("Unable to get notification settings");
+			Log.Error("Unable to get notification settings");
 			return false;
 		}
 
@@ -124,11 +123,11 @@ namespace OxxCommerceStarterKit.Web.Services.Email
 				}
 				else
 				{
-					_log.Error(result.Exception);
+					Log.Error(result.Exception.Message,result.Exception);
 					return false;
 				}
 			}
-			_log.Error("Unable to get notification settings");
+			Log.Error("Unable to get notification settings");
 			return false;
 		}
 	}

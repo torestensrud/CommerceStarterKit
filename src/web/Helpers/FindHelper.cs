@@ -10,28 +10,23 @@ Copyright (C) 2013-2014 BV Network AS
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using EPiServer;
 using EPiServer.Commerce.Catalog;
 using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
-using EPiServer.Commerce.SpecializedProperties;
 using EPiServer.Core;
+using EPiServer.Logging;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
-using log4net;
-using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
-using Mediachase.Commerce.Core;
 using Mediachase.Commerce.Inventory;
 using Mediachase.Commerce.Pricing;
-using OxxCommerceStarterKit.Core;
 using OxxCommerceStarterKit.Core.Extensions;
-using OxxCommerceStarterKit.Core.Models;
 using OxxCommerceStarterKit.Web.Models.Catalog;
 using OxxCommerceStarterKit.Web.Models.FindModels;
+
 
 namespace OxxCommerceStarterKit.Web.Helpers
 {
@@ -47,7 +42,7 @@ namespace OxxCommerceStarterKit.Web.Helpers
 		private readonly ReferenceConverter _referenceConverter = null;
 		private IPriceService _priceService = null;
 		private IWarehouseInventoryService _inventoryService = null;
-		private ILog _log = LogManager.GetLogger(typeof(FindHelper));
+		private ILogger _log = LogManager.GetLogger();
 
 		public FindHelper(ReadOnlyPricingLoader priceLoader, ILinksRepository linksRepository, IContentLoader contentLoader, UrlResolver urlResolver, IPermanentLinkMapper permanentLinkMapper, ReferenceConverter referenceConverter, IPriceService priceService, IWarehouseInventoryService inventoryService)
 		{

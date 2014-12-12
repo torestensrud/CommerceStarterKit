@@ -13,7 +13,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web.Configuration;
 using System.Web.Security;
-using log4net;
+using EPiServer.Logging;
 using OxxCommerceStarterKit.Core;
 
 namespace OxxCommerceStarterKit.Web.ResetPassword
@@ -21,7 +21,7 @@ namespace OxxCommerceStarterKit.Web.ResetPassword
     public class ResetPasswordService : IResetPasswordService
     {
         private readonly IResetPasswordRepository _resetPasswordRespository;
-        private static ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static ILogger Log = LogManager.GetLogger();
        
 
         public ResetPasswordService(IResetPasswordRepository resetPasswordRespository)

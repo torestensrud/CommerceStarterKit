@@ -18,22 +18,23 @@ using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Commerce.Catalog.Provider;
 using EPiServer.Commerce.SpecializedProperties;
 using EPiServer.Core;
+using EPiServer.Logging;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 using EPiServer.Web.WebControls;
-using log4net;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Core;
 using Mediachase.Commerce.Inventory;
 using OxxCommerceStarterKit.Core.Models;
 
+
 namespace OxxCommerceStarterKit.Core.Extensions
 {
     public static class CommerceContentExtensions
     {
-        private static ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static ILogger Log = LogManager.GetLogger();
 
         public static Injected<ILinksRepository> LinksRepository { get; set; }
         public static Injected<IContentLoader> ContentLoader { get; set; }
@@ -280,7 +281,7 @@ namespace OxxCommerceStarterKit.Core.Extensions
             catch (Exception ex)
             {
                 // TODO: Fix this empty catch, it is too greedy
-                _log.Debug(string.Format("Failed to get categories from product {0}, Code: {1}.", productContent.Name, productContent.ContentLink), ex);
+                Log.Debug(string.Format("Failed to get categories from product {0}, Code: {1}.", productContent.Name, productContent.ContentLink), ex);
             }
             return parentCategories.DistinctBy(a => a.ContentLink.ID).ToList();
         }
@@ -309,7 +310,7 @@ namespace OxxCommerceStarterKit.Core.Extensions
             }
             catch (Exception ex)
             {
-                _log.Error("GetPrices returned an error at product with id " + content.Code, ex);
+                Log.Error("GetPrices returned an error at product with id " + content.Code, ex);
             }
             if (itemCollection != null)
             {

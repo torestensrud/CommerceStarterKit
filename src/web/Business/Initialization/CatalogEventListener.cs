@@ -18,8 +18,8 @@ using EPiServer.Find;
 using EPiServer.Find.Framework;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
+using EPiServer.Logging;
 using EPiServer.ServiceLocation;
-using log4net;
 using Mediachase.Commerce.Catalog;
 using Mediachase.Commerce.Catalog.Dto;
 using Mediachase.Commerce.Catalog.Events;
@@ -31,7 +31,7 @@ namespace OxxCommerceStarterKit.Web.Business.Initialization
     [ModuleDependency(typeof(EPiServer.Commerce.Initialization.InitializationModule))]
 	public class CatalogEventListener : IInitializableModule
 	{
-        private ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private ILogger _log = LogManager.GetLogger();
 
         public void Initialize(InitializationEngine context)
         {
@@ -42,7 +42,7 @@ namespace OxxCommerceStarterKit.Web.Business.Initialization
 
         private void InstanceOnLocalEntryUpdating(object sender, EntryEventArgs entryEventArgs)
         {
-            _log.DebugFormat("Entry Updating ({0}): {1}", entryEventArgs.EventName, sender.GetType().Name);
+            _log.Debug("Entry Updating ({0}): {1}", entryEventArgs.EventName, sender.GetType().Name);
         }
 
         public void Uninitialize(InitializationEngine context)
@@ -65,13 +65,13 @@ namespace OxxCommerceStarterKit.Web.Business.Initialization
 
         private void ProductEventManagerOnRelationDataUpdating(object sender, CatalogContentUpdateEventArgs catalogContentUpdateEventArgs)
         {
-            _log.DebugFormat("Relation Updating ({0}): {1}", catalogContentUpdateEventArgs.EventType,
+            _log.Debug("Relation Updating ({0}): {1}", catalogContentUpdateEventArgs.EventType,
                 string.Join(" | ", catalogContentUpdateEventArgs.CatalogIds));
         }
 
         private void InstanceOnLocalRelationUpdating(object sender, RelationEventArgs relationEventArgs)
         {
-            _log.DebugFormat("Relation Updating ({0}): {1}", relationEventArgs.EventName, sender.GetType().Name);
+            _log.Debug("Relation Updating ({0}): {1}", relationEventArgs.EventName, sender.GetType().Name);
             RelationUpdating(sender, relationEventArgs);
         }
 

@@ -22,11 +22,12 @@ using EPiServer.Commerce.Routing;
 using EPiServer.Core;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
+using EPiServer.Logging;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 using EPiServer.Web.Routing.Segments;
-using log4net;
+
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Catalog;
@@ -43,7 +44,7 @@ namespace OxxCommerceStarterKit.Web.Business.Initialization
 	[ModuleDependency(typeof(EPiServer.Commerce.Initialization.InitializationModule))]
 	public class CommerceInitialization : IInitializableModule, IConfigurableModule
 	{
-		private ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+		private ILogger _log = LogManager.GetLogger();
 
 		public void Initialize(InitializationEngine context)
 		{

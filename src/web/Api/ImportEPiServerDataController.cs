@@ -16,13 +16,14 @@ using EPiServer.Core;
 using EPiServer.Core.Transfer;
 using EPiServer.Enterprise;
 using EPiServer.Enterprise.Transfer;
-using log4net;
+using EPiServer.Logging;
+
 
 namespace OxxCommerceStarterKit.Web.Api
 {
     public class ImportEPiServerDataController : BaseApiController
     {
-        private readonly ILog _log = LogManager.GetLogger(typeof(ImportEPiServerDataController));
+        private readonly ILogger _log = LogManager.GetLogger();
 
 
         public string Get()
@@ -103,7 +104,7 @@ namespace OxxCommerceStarterKit.Web.Api
             if (property == null)
                 property = args.TransferContentData.RawContentData.Property[0];
 
-            _log.DebugFormat("Content Import: {0} = {1}", property.Name, property.Value);
+            _log.Debug("Content Import: {0} = {1}", property.Name, property.Value);
 
         }
 

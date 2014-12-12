@@ -22,8 +22,9 @@ using EPiServer.Find.Cms.Conventions;
 using EPiServer.Find.Framework;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
+using EPiServer.Logging;
 using EPiServer.ServiceLocation;
-using log4net;
+using OxxCommerceStarterKit.Web.CustomLog;
 using OxxCommerceStarterKit.Web.Helpers;
 using OxxCommerceStarterKit.Web.Models.Blocks;
 using OxxCommerceStarterKit.Web.Models.Blocks.Contracts;
@@ -41,7 +42,7 @@ namespace OxxCommerceStarterKit.Web.Business.Initialization
     [ModuleDependency(typeof(EPiServer.Web.InitializationModule))]
     public class IndexingEventInitialization : IInitializableModule
     {
-        protected static ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        protected static ILogger _log = LogManager.GetLogger();
 
         /// <summary>
         /// Set this flag to temporary disable indexing while running long jobs. It is enabled by default.

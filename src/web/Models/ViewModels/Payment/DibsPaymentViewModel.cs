@@ -16,10 +16,11 @@ using System.Security;
 using System.Web;
 using EPiServer;
 using EPiServer.Core;
+using EPiServer.Logging;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
-using log4net;
+
 using Mediachase.Commerce;
 using Mediachase.Commerce.Core;
 using Mediachase.Commerce.Orders;
@@ -36,7 +37,7 @@ namespace OxxCommerceStarterKit.Web.Models.ViewModels.Payment
 {
     public class DibsPaymentViewModel : PageViewModel<DibsPaymentPage>
     {
-        protected static ILog _log = log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        protected static ILogger _log = LogManager.GetLogger();
         private Cart _currentCart = null;
         private Mediachase.Commerce.Orders.Payment _payment;
         private PaymentMethodDto _paymentMethod;

@@ -10,12 +10,11 @@ Copyright (C) 2013-2014 BV Network AS
 
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Reflection;
 using EPiServer.BaseLibrary.Scheduling;
+using EPiServer.Logging;
 using EPiServer.PlugIn;
 using EPiServer.Security;
 using EPiServer.ServiceLocation;
-using log4net;
 using Mediachase.Commerce.Orders;
 using OxxCommerceStarterKit.Core;
 using OxxCommerceStarterKit.Core.Services;
@@ -34,7 +33,7 @@ namespace OxxCommerceStarterKit.Web.Jobs
 	public class ExportOrderJob : JobBase
 	{
 		private bool _stopSignaled;
-		protected static ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+		protected static ILogger _log = LogManager.GetLogger();
 
 		public ExportOrderJob()
 		{
@@ -64,7 +63,7 @@ namespace OxxCommerceStarterKit.Web.Jobs
 			List<PurchaseOrder> orders = GetOrdersToExport();
 			tmr.Stop();
 
-			_log.DebugFormat("Found {0} orders to export in {1}ms", orders.Count, tmr.ElapsedMilliseconds);
+			_log.Debug("Found {0} orders to export in {1}ms", orders.Count, tmr.ElapsedMilliseconds);
 
 
 			if (_stopSignaled) return "Job was stopped";
@@ -86,7 +85,7 @@ namespace OxxCommerceStarterKit.Web.Jobs
 		{
             // Export to back-end system, and retrieves an external id that is stored on the order
 			string externalOrderNumber = service.ExportOrder(purchaseOrder);
-			_log.DebugFormat("Exported {0} to external system, got {1} back", purchaseOrder.TrackingNumber, externalOrderNumber);
+			_log.Debug("Exported {0} to external system, got {1} back", purchaseOrder.TrackingNumber, externalOrderNumber);
 			
 			ExportOrderInformation result = new ExportOrderInformation
 			{

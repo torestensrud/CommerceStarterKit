@@ -13,10 +13,10 @@ using System.Reflection;
 using System.Web.Mvc;
 using EPiServer;
 using EPiServer.Core;
+using EPiServer.Logging;
 using EPiServer.Security;
 using EPiServer.ServiceLocation;
 using EPiServer.Web.Mvc;
-using log4net;
 using OxxCommerceStarterKit.Web.Business;
 using OxxCommerceStarterKit.Web.Models.PageTypes;
 using OxxCommerceStarterKit.Web.Models.ViewModels;
@@ -26,7 +26,7 @@ namespace OxxCommerceStarterKit.Web.Controllers
 	public class PageControllerBase<T> : PageController<T> where T : PageData
 	{
 		private static Injected<IContentLoader> _contentLoaderService ;
-        protected static ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        protected static ILogger _log = LogManager.GetLogger();
 
 		protected IContentLoader ContentLoader
 		{
@@ -56,7 +56,7 @@ namespace OxxCommerceStarterKit.Web.Controllers
 
 		private void ServeAccessDenied(AuthorizationContext filterContext)
 		{
-			_log.Info(
+			_log.Information(
 				"AccessDenied",
 				new AccessDeniedException(CurrentPage.ContentLink));
 

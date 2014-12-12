@@ -16,10 +16,10 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using EPiServer.Logging;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
-using log4net;
-using OxxCommerceStarterKit.Web.Controllers;
+
 
 namespace OxxCommerceStarterKit.Web
 {
@@ -34,7 +34,7 @@ namespace OxxCommerceStarterKit.Web
 	    static WebGlobal()
 	    {
             // TODO: Remove this when you are not going to use LocalDb anymore.
-	        ILog log = LogManager.GetLogger(typeof(WebGlobal));
+	        ILogger log = LogManager.GetLogger();
 	        DirectoryInfo dir = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory + @"\..\..\db\");
             log.Debug("Setting data directory for Local DB to: " + dir.FullName);
             AppDomain.CurrentDomain.SetData("DataDirectory", dir.FullName);

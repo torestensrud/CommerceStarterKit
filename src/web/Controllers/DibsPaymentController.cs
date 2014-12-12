@@ -14,6 +14,7 @@ using System.Configuration;
 using System.Web.Mvc;
 using EPiServer;
 using EPiServer.Core;
+using EPiServer.Logging;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Orders.Managers;
 using Mediachase.Commerce.Website.Helpers;
@@ -100,19 +101,20 @@ namespace OxxCommerceStarterKit.Web.Controllers
             tracking.Custom("ga('send', 'pageview');");
         }
 
-        /// <summary>
-        /// Processes the payment after we get back from the
-        /// payment provider
-        /// </summary>
-        /// <param name="result">The result posted from the provider.</param>
-		[HttpPost]
+	    /// <summary>
+	    /// Processes the payment after we get back from the
+	    /// payment provider
+	    /// </summary>
+	    /// <param name="currentPage"></param>
+	    /// <param name="result">The result posted from the provider.</param>
+	    [HttpPost]
 		[RequireSSL]
 		public ActionResult ProcessPayment(DibsPaymentPage currentPage, DibsPaymentResult result)
 		{
             ReceiptPage receiptPage = _contentRepository.Get<ReceiptPage>(_siteConfiguration.Settings.ReceiptPage);
 
-		    if(_log.IsDebugEnabled)
-			    _log.DebugFormat("Payment processed: {0}", result);
+		    if(_log.IsDebugEnabled())
+			    _log.Debug("Payment processed: {0}", result);
 
 			CartHelper cartHelper = new CartHelper(Cart.DefaultName);
 			string message = "";

@@ -18,7 +18,9 @@ using BVNetwork.FileNotFound.Configuration;
 using BVNetwork.FileNotFound.Redirects;
 using EPiServer;
 using EPiServer.Core;
+using EPiServer.Logging;
 using EPiServer.ServiceLocation;
+using OxxCommerceStarterKit.Web.CustomLog;
 using OxxCommerceStarterKit.Web.Models.PageTypes;
 using OxxCommerceStarterKit.Web.Models.ViewModels;
 using OxxCommerceStarterKit.Web.Services.Email;
@@ -28,10 +30,17 @@ namespace OxxCommerceStarterKit.Web.Controllers
     public class ErrorController : PageControllerBase<PageData>
     {
 
+        private log4net.ILog log = log4net.LogManager.GetLogger(typeof (ErrorController));
+ 
+       
 
         // GET: Error404
         public ActionResult Error404()
         {
+
+     
+
+
 			ErrorPageViewModel model = GetViewModel();
 
 			model.Referer = HttpContext.Request.UrlReferrer;
@@ -73,7 +82,7 @@ namespace OxxCommerceStarterKit.Web.Controllers
 			if (exception != null && !(exception is OperationCanceledException || exception is TaskCanceledException) && (
 				HttpContext == null || (HttpContext != null && !HttpContext.Request.Url.ToString().EndsWith("/find_v2/"))))
 			{
-				_log.Error(exception);
+				_log.Error(exception.Message,exception);
 
 				NotifyDeveloper("", exception);
 			}
@@ -133,9 +142,9 @@ namespace OxxCommerceStarterKit.Web.Controllers
             // TODO: This copy should be removed. The 404 should be extended to work without
             // a Page object.
 
-			if (_log.IsDebugEnabled)
+			if (_log.IsDebugEnabled())
 			{
-				_log.DebugFormat("Trying to handle 404 for \"{0}\" (Referrer: \"{1}\")", urlNotFound, referer);
+				_log.Debug("Trying to handle 404 for \"{0}\" (Referrer: \"{1}\")", urlNotFound, referer);
 			}
 			CustomRedirectHandler current = CustomRedirectHandler.Current;
 			CustomRedirect customRedirect = current.CustomRedirects.Find(new Uri(urlNotFound.AbsoluteUri));
@@ -143,13 +152,13 @@ namespace OxxCommerceStarterKit.Web.Controllers
 			if (customRedirect == null)
 			{
                 // Check relative uri
-                customRedirect = current.CustomRedirects.Find(new Uri(urlNotFound.PathAndQuery));
+                customRedirect = current.CustomRedirects.Find(urlNotFound);
 			}
 			if (customRedirect != null)
 			{
 				if (customRedirect.State.Equals(0) && string.Compare(customRedirect.NewUrl, str, StringComparison.InvariantCultureIgnoreCase) != 0)
 				{
-					_log.Info(string.Format("404 Custom Redirect: To: '{0}' (from: '{1}')", customRedirect.NewUrl, str));
+					_log.Information(string.Format("404 Custom Redirect: To: '{0}' (from: '{1}')", customRedirect.NewUrl, str));
 					context.Response.Clear();
 					context.Response.StatusCode = 301;
 					context.Response.StatusDescription = "Moved Permanently";

@@ -12,11 +12,10 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
-using System.Reflection;
 using EPiServer;
 using EPiServer.Core;
+using EPiServer.Logging;
 using EPiServer.ServiceLocation;
-using log4net;
 using OxxCommerceStarterKit.Web.Models.ViewModels.Email;
 
 namespace OxxCommerceStarterKit.Web.Services.Email.Models
@@ -36,11 +35,11 @@ namespace OxxCommerceStarterKit.Web.Services.Email.Models
 
 		public static SendEmailResponse SendEmail(Postal.Email email)
 		{
-			var log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+			var log = LogManager.GetLogger();
 			return SendEmail(email, log);
 		}
 
-		public static SendEmailResponse SendEmail(Postal.Email email, ILog log)
+		public static SendEmailResponse SendEmail(Postal.Email email, ILogger log)
 		{
 			var output = new SendEmailResponse();
 
