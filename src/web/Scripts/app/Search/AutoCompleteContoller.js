@@ -5,11 +5,11 @@
 
     "use strict";
 
-    productApp.controller('AutoCompleteController', function ($scope) {
+    productApp.controller('AutoCompleteController', ['$scope', function ($scope) {
         $scope.init = function(language) {
             $scope.language = language;
         };
-    });
+    }]);
 
 
     productApp.directive('autoComplete', ['$http', function ($http) {

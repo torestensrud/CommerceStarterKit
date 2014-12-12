@@ -18,7 +18,6 @@
 				$('#equalHeights .product').equalHeights();
 			}
 		}
-
 	});
 
 })(jQuery, window.productApp);

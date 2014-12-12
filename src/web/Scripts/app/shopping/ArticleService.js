@@ -5,7 +5,7 @@
 
 	"use strict";
 
-	productApp.factory("articleService", function ($http, $q) {
+	productApp.factory("articleService",['$http', '$q', function ($http, $q) {
 		return {
 			get: function (searchTerm, language, pageNumber, pageSize) {
 				var deferred = $q.defer();
@@ -23,6 +23,6 @@
 			}
 		};
 
-	});
+	}]);
 
 })(jQuery, window.productApp);

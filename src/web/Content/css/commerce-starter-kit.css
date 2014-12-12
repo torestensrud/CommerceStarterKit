@@ -304,7 +304,7 @@ footer .footer .extra .buttonwithhelplinkblock {
 .big-slider .flex-direction-nav a {
   opacity: 0.8;
   text-indent: -99999px;
-  background: transparent url("Images/slider-arrows.png") no-repeat scroll 0 0;
+  background: transparent url("/Content/Images/slider-arrows.png") no-repeat scroll 0 0;
   width: 10px;
   height: 21px;
 }
@@ -1171,3 +1171,4 @@ input[type=password] {
     padding-right: 0;
   }
 }
+/*# sourceMappingURL=commerce-starter-kit.css.map */
