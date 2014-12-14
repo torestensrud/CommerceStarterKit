@@ -80,7 +80,5 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders
             return HashEncode(hash);
         }
 
-       
-
     }
 }

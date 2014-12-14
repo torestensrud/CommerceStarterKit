@@ -47,9 +47,7 @@ namespace OxxCommerceStarterKit.Web.Models.ViewModels.Payment
         //private string _callbackUrl;
 
         public const string DIBSSystemName = "DIBS";
-        public string ProcessingUrl { get; set; }
-        public string MD5K1 { get; set; }
-        public string MD5K2 { get; set; }
+        public string ProcessingUrl { get; set; }        
         public string CallbackUrl { get; set; }
 		public bool IsTest { get; set; }
 
@@ -110,17 +108,6 @@ namespace OxxCommerceStarterKit.Web.Models.ViewModels.Payment
             get
             {
                 return DIBSPaymentGateway.GetParameterByName(_paymentMethod, DIBSPaymentGateway.UserParameter).Value;
-            }
-        }
-
-        /// <summary>
-        /// Gets the MD5 authentication key to send to DIBS.
-        /// </summary>
-        public string MD5Key
-        {
-            get
-            {
-                return DIBSPaymentGateway.GetMD5Key(MerchantID, OrderID, Currency, Amount, _paymentMethod);
             }
         }
 
@@ -224,9 +211,7 @@ namespace OxxCommerceStarterKit.Web.Models.ViewModels.Payment
 				payments = new Mediachase.Commerce.Orders.Payment[0];
 			}
             _payment = payments.FirstOrDefault(c => c.PaymentMethodId.Equals(dibs.PaymentMethod.Rows[0]["PaymentMethodId"]));
-            ProcessingUrl = DIBSPaymentGateway.GetParameterByName(dibs, DIBSPaymentGateway.ProcessingUrl).Value;
-            MD5K1 = DIBSPaymentGateway.GetParameterByName(dibs, DIBSPaymentGateway.MD5Key1).Value;
-            MD5K2 = DIBSPaymentGateway.GetParameterByName(dibs, DIBSPaymentGateway.MD5Key2).Value;
+            ProcessingUrl = DIBSPaymentGateway.GetParameterByName(dibs, DIBSPaymentGateway.ProcessingUrl).Value;            
             Key = gw.Key;
             InnerKey = gw.InnerKey;
             OuterKey = gw.OuterKey;

@@ -4655,10 +4655,12 @@
     <Content Include="App_GlobalResources\Order\OrderStrings.no.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>OrderStrings.no1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="App_GlobalResources\Order\OrderStrings.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>OrderStrings1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="App_GlobalResources\Order\OrderStrings.sv.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>

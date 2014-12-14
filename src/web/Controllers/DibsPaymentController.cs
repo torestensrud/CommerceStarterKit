@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Web.Mvc;
+using AuthorizeNet.APICore;
 using EPiServer;
 using EPiServer.Core;
 using EPiServer.Logging;
@@ -146,6 +147,13 @@ namespace OxxCommerceStarterKit.Web.Controllers
 
 				var results = OrderGroupWorkflowManager.RunWorkflow(cartHelper.Cart, OrderGroupWorkflowManager.CartCheckOutWorkflowName);
 				message = string.Join(", ", OrderGroupWorkflowManager.GetWarningsFromWorkflowResult(results));
+
+			    if (message.Length == 0)
+			    {
+			        cartHelper.Cart.SaveAsPurchaseOrder();
+                    cartHelper.Cart.Delete();
+                    cartHelper.Cart.AcceptChanges();
+			    }
 
 				var order = _orderRepository.GetOrderByTrackingNumber(orderNumber);
 				

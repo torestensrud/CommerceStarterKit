@@ -358,9 +358,7 @@
     <Content Include="PaymentProviders\DIBS\ConfigurePayment.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="PaymentProviders\DIBS\EditTab.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="PaymentProviders\DIBS\EditTab.ascx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

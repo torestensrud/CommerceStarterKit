@@ -16,12 +16,25 @@ using System.Text;
 using System.Web;
 using EPiServer;
 using EPiServer.Core;
+using EPiServer.Logging;
+using log4net.Repository.Hierarchy;
 using Mediachase.Commerce;
 using Mediachase.Commerce.Core;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Orders.Dto;
 using Mediachase.Commerce.Orders.Managers;
 using Mediachase.Commerce.Plugins.Payment;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Net;
+using System.IO;
+using Newtonsoft.Json;
+using System.Globalization;
+using System.Security.Cryptography;
 
 namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
 {
@@ -33,23 +46,12 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
         public const string KeyParameter = "Key";
         public const string InnerKeyParameter = "InnerKey";
         public const string OuterKeyParameter = "OuterKey";
+        public const string ApiUserParameter = "ApiUser";
 
-        public const string MD5Key1 = "MD5Key1";
-        public const string MD5Key2 = "MD5Key2";
+        public const string Capture = "CaptureTransaction";
+        public const string Refund = "RefundTransaction";
+        public const string Cancel = "CancelTransaction";
 
-        public const string DKK = "208";
-        public const string EUR = "978";
-        public const string USD = "840";
-        public const string GBP = "826";
-        public const string SEK = "752";
-        public const string AUD = "036";
-        public const string CAD = "124";
-        public const string ISK = "352";
-        public const string JPY = "392";
-        public const string NZD = "554";
-        public const string NOK = "578";
-        public const string CHF = "756";
-        public const string TRY = "949";
         public const string PaymentCompleted = "DIBS payment completed";
 
         private string _merchant;
@@ -58,6 +60,10 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
         private static string _key;
         private string _innerkey;
         private string _outerkey;
+        private string _apiuser;
+
+
+        private ILogger _log = LogManager.GetLogger();
 
         /// <summary>
         /// Processes the payment.
@@ -75,12 +81,10 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
             if (payment.Parent.Parent is PurchaseOrder)
             {
                 if (payment.TransactionType == TransactionType.Capture.ToString())
-                {
-                    //return true meaning the capture request is done,
-                    //actual capturing must be done on DIBS.
-                    string result = PostCaptureRequest(payment);
-                    //result containing ACCEPTED means the the request was successful
-                    if (result.IndexOf("ACCEPTED") == -1)
+                {                    
+                    bool isCaptured= CaptureTransaction(payment);
+                    
+                    if (!isCaptured)
                     {
                         message = "There was an error while capturing payment with DIBS";
                         return false;
@@ -97,12 +101,13 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
                         return false;
                     }
                     //The transact must be captured before refunding
-                    string result = PostRefundRequest(payment);
-                    if (result.IndexOf("ACCEPTED") == -1)
+                    bool isRefunded = RefundTransaction(payment);
+                    if (!isRefunded)
                     {
                         message = "There was an error while refunding with DIBS";
                         return false;
                     }
+
                     return true;
                 }
                 //right now we do not support processing the order which is created by Commerce Manager
@@ -131,52 +136,11 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
             return true;
         }
 
-        /// <summary>
-        /// Posts the request to DIBS API.
-        /// </summary>
-        /// <param name="payment">The payment.</param>
-        /// <param name="url">The URL.</param>
-        /// <returns>A string contains result from DIBS API</returns>
-        private string PostRequest(Mediachase.Commerce.Orders.Payment payment, string url)
+ 
+        private string GetAmount(Mediachase.Commerce.Orders.Payment payment)
         {
-            WebClient webClient = new WebClient();
-            NameValueCollection request = new NameValueCollection();
-            PurchaseOrder po = payment.Parent.Parent as PurchaseOrder;
-            string orderid = po.TrackingNumber;
-            string transact = payment.TransactionID;
-            string amount = (payment.Amount * 100).ToString();
-            request.Add("merchant", Merchant);
-            request.Add("transact", transact);
-            request.Add("amount", amount);
-
-            request.Add("currency", payment.Parent.Parent.BillingCurrency);
-            request.Add("orderId", orderid);
-            string md5 = GetMD5KeyRefund(Merchant, orderid, transact, amount, _payment);
-            request.Add("md5key", md5);
-            request.Add("force", "yes");
-            request.Add("textreply", "yes");
-            webClient.Credentials = new NetworkCredential(Merchant, Password);
-            byte[] responseArray = webClient.UploadValues(url, "POST", request);
-            return Encoding.ASCII.GetString(responseArray);
-        }
-
-        /// <summary>
-        /// Posts the capture request to DIBS API.
-        /// </summary>
-        /// <param name="payment">The payment.</param>
-        /// <returns>Return string from DIBS API</returns>
-        private string PostCaptureRequest(Mediachase.Commerce.Orders.Payment payment)
-        {
-            return PostRequest(payment, "https://payment.architrade.com/cgi-bin/capture.cgi");
-        }
-
-        /// <summary>
-        /// Posts the refund request to DIBS API.
-        /// </summary>
-        /// <param name="payment">The payment.</param>
-        private string PostRefundRequest(Mediachase.Commerce.Orders.Payment payment)
-        {
-            return PostRequest(payment, "https://payment.architrade.com/cgi-adm/refund.cgi");
+            var amountInCents = (payment.Amount*100).ToString("0");
+            return amountInCents;
         }
 
         /// <summary>
@@ -263,80 +227,20 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
             }
         }
 
-
-
-
-        /// <summary>
-        /// Gets the M d5 key refund.
-        /// </summary>
-        /// <param name="merchant">The merchant.</param>
-        /// <param name="orderId">The order id.</param>
-        /// <param name="transact">The transact.</param>
-        /// <param name="amount">The amount.</param>
-        /// <returns></returns>
-        public static string GetMD5KeyRefund(string merchant, string orderId, string transact, string amount, PaymentMethodDto payment)
+        public string ApiUser
         {
-            string hashString = string.Format("merchant={0}&orderid={1}&transact={2}&amount={3}", merchant,
-                                                        orderId, transact, amount);
-            return GetMD5Key(hashString, payment);
-        }
 
-        /// <summary>
-        /// Gets the MD5 key used to send to DIBS in authorization step.
-        /// </summary>
-        /// <param name="merchant">The merchant.</param>
-        /// <param name="orderId">The order id.</param>
-        /// <param name="currency">The currency.</param>
-        /// <param name="amount">The amount.</param>
-        /// <returns></returns>
-        public static string GetMD5Key(string merchant, string orderId, Currency currency, string amount, PaymentMethodDto payment)
-        {
-            string hashString = string.Format("merchant={0}&orderid={1}&currency={2}&amount={3}", merchant,
-                                                        orderId, currency.CurrencyCode, amount);
-            return GetMD5Key(hashString, payment);
-        }
-
-
-        /// <summary>
-        /// Gets the key used to verify response from DIBS when payment is approved.
-        /// </summary>
-        /// <param name="transact">The transact.</param>
-        /// <param name="amount">The amount.</param>
-        /// <param name="currency">The currency.</param>
-        /// <returns></returns>
-        public static string GetMD5Key(string transact, string amount, Currency currency, PaymentMethodDto payment)
-        {
-            string hashString = string.Format("transact={0}&amount={1}&currency={2}", transact, amount, GetCurrencyCode(currency));
-            return GetMD5Key(hashString, payment);
-        }
-
-        private static string GetMD5Key(string hashString, PaymentMethodDto payment)
-        {
-            PaymentMethodDto dibs = payment;
-            string key1 = GetParameterByName(dibs, MD5Key1).Value;
-            string key2 = GetParameterByName(dibs, MD5Key2).Value;
-
-            MD5CryptoServiceProvider x = new MD5CryptoServiceProvider();
-            byte[] bs = System.Text.Encoding.UTF8.GetBytes(key1 + hashString);
-            bs = x.ComputeHash(bs);
-            StringBuilder s = new StringBuilder();
-            foreach (byte b in bs)
+            get
             {
-                s.Append(b.ToString("x2").ToLower());
+                if (string.IsNullOrEmpty(_apiuser))
+                {
+                    _apiuser = GetParameterByName(Payment, ApiUserParameter).Value;
+                }
+                return _apiuser;
             }
-            string firstHash = s.ToString();
 
-            string secondHashString = key2 + firstHash;
-            byte[] bs2 = System.Text.Encoding.UTF8.GetBytes(secondHashString);
-            bs2 = x.ComputeHash(bs2);
-            StringBuilder s2 = new StringBuilder();
-            foreach (byte b in bs2)
-            {
-                s2.Append(b.ToString("x2").ToLower());
-            }
-            string secondHash = s2.ToString();
-            return secondHash;
         }
+
 
         /// <summary>
         /// Gets the parameter by name.
@@ -353,43 +257,150 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
             }
             throw new ArgumentNullException("Parameter named " + name + " for DIBS payment cannot be null");
         }
+        
 
+        /**
+* CaptureTransaction
+* Captures a previously authorized transaction using the CaptureTransaction JSON service
+* @param amount The amount of the capture in smallest unit
+* @param merchantId DIBS Merchant ID / customer number
+* @param transactionId The ticket number on which the authorization should be done
+* @param K The secret HMAC key from DIBS Admin
+*/
 
-        /// <summary>
-        /// Convert the currency code of the site to
-        /// the ISO4217 number for that currency for DIBS to understand.
-        /// </summary>
-        /// <param name="currency">The currency.</param>
-        /// <returns></returns>
-        private static string GetCurrencyCode(Currency currency)
+        public bool CaptureTransaction(Mediachase.Commerce.Orders.Payment payment)
         {
-            if (currency.Equals(Currency.DKK))
-                return DIBSPaymentGateway.DKK;
-            else if (currency.Equals(Currency.AUD))
-                return DIBSPaymentGateway.AUD;
-            else if (currency.Equals(Currency.CAD))
-                return DIBSPaymentGateway.CAD;
-            else if (currency.Equals(Currency.CHF))
-                return DIBSPaymentGateway.CHF;
-            else if (currency.Equals(Currency.EUR))
-                return DIBSPaymentGateway.EUR;
-            else if (currency.Equals(Currency.GBP))
-                return DIBSPaymentGateway.GBP;
-            else if (currency.Equals(Currency.ISK))
-                return DIBSPaymentGateway.ISK;
-            else if (currency.Equals(Currency.JPY))
-                return DIBSPaymentGateway.JPY;
-            else if (currency.Equals(Currency.NOK))
-                return DIBSPaymentGateway.NOK;
-            else if (currency.Equals(Currency.NZD))
-                return DIBSPaymentGateway.NZD;
-            else if (currency.Equals(Currency.SEK))
-                return DIBSPaymentGateway.SEK;
-            else if (currency.Equals(Currency.TRY))
-                return DIBSPaymentGateway.TRY;
-            else if (currency.Equals(Currency.USD))
-                return DIBSPaymentGateway.USD;
-            return string.Empty;
+            var message = GetTransactionMessage(payment);            
+            Dictionary<string, string> res = postToDIBS(Capture, message);
+            return GetTransactionResult(res);
         }
+
+
+        public bool RefundTransaction(Mediachase.Commerce.Orders.Payment payment)
+        {
+            var message = GetTransactionMessage(payment);
+            Dictionary<string, string> res = postToDIBS(Refund, message);
+            return GetTransactionResult(res);
+        }
+
+        public bool CancelTransaction(Mediachase.Commerce.Orders.Payment payment)
+        {
+            var message = GetTransactionMessage(payment);
+            Dictionary<string, string> res = postToDIBS(Cancel, message);
+            return GetTransactionResult(res);
+        }
+
+        private bool GetTransactionResult(Dictionary<string, string> res)
+        {
+            _log.Debug("CaptureTransaction done.");
+            _log.Debug("Response:");
+            foreach (KeyValuePair<string, string> r in res)
+            {
+                _log.Debug("{0} = {1}", r.Key, r.Value);
+            }
+
+            if (res["status"] != "ACCEPT")
+                return false;
+
+            return true;
+        }
+
+        private Dictionary<string, string> GetTransactionMessage(Mediachase.Commerce.Orders.Payment payment)
+        {
+            var macCalculator = new HmacCalculator(Key);
+            var merchantId = Merchant;
+
+            //Create Dictionary<string, string> object with used values. Can be modified to contain additional parameters.
+            Dictionary<string, string> message = new Dictionary<string, string>
+            {
+                {"amount", GetAmount(payment)},
+                {"merchantId", merchantId},
+                {"transactionId", payment.TransactionID}
+            };
+
+            //Calculate mac and add it
+            string mac = macCalculator.GetHex(message);
+            message.Add("MAC", mac);
+            return message;
+        }
+
+        /**
+* postToDIBS
+* Sends a set of parameters to a DIBS API function
+* @param paymentFunction The name of the target payment function, e.g. AuthorizeCard
+* @param data A set of parameters to be posted in Dictionary<string, string> format
+* @return Dictionary<string, string>
+*/
+        static Dictionary<string, string> postToDIBS(string paymentFunction, Dictionary<string, string> data)
+        {
+            //Set correct POST URL corresponding to the payment function requested
+            string postUrl = "https://api.dibspayment.com/merchant/v1/JSON/Transaction/";
+            switch (paymentFunction)
+            {
+                case "AuthorizeCard":
+                    postUrl += "AuthorizeCard";
+                    break;
+                case "AuthorizeTicket":
+                    postUrl += "AuthorizeTicket";
+                    break;
+                case Cancel:
+                    postUrl += Cancel;
+                    break;
+                case Capture:
+                    postUrl += Capture;
+                    break;
+                case "CreateTicket":
+                    postUrl += "CreateTicket";
+                    break;
+                case Refund:
+                    postUrl += Refund;
+                    break;
+                case "Ping":
+                    postUrl += "Ping";
+                    break;
+                default:
+                    System.Console.WriteLine("Wrong input paymentFunctions to postToDIBS");
+                    postUrl = null;
+                    break;
+            }
+
+            //Create JSON string from Dictionary<string, string>
+            string json_data = JsonConvert.SerializeObject(data);
+            json_data = "request=" + json_data;
+
+            ASCIIEncoding encoding = new ASCIIEncoding();
+            byte[] json_data_encoded = encoding.GetBytes(json_data);
+
+            //Using HttpWebRequest for posting and receiving response
+            HttpWebRequest con = (HttpWebRequest)WebRequest.Create(postUrl);
+
+            con.Method = "POST";
+            con.ContentType = "application/x-www-form-urlencoded";
+            con.ContentLength = json_data_encoded.Length;
+            con.Timeout = 15000; //15 seconds timeout
+
+            //Send the POST request
+            using (Stream stream = con.GetRequestStream())
+            {
+                stream.Write(json_data_encoded, 0, json_data_encoded.Length);
+            }
+
+            //Receive response
+            Dictionary<string, string> res_dict = new Dictionary<string, string> { };
+            try
+            {
+                HttpWebResponse response = (HttpWebResponse)con.GetResponse();
+                string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                //Create Dictionary<string,string> hashmap from response JSON data
+                res_dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseString);
+            }
+            catch (System.Net.WebException)
+            {
+                Console.WriteLine("Timeout occured...");
+            }
+            return res_dict;
+        }
+
+
     }
 }
