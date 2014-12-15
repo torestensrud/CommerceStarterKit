@@ -44,8 +44,6 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
         public const string PasswordParameter = "Password";
         public const string ProcessingUrl = "ProcessingUrl";
         public const string KeyParameter = "Key";
-        public const string InnerKeyParameter = "InnerKey";
-        public const string OuterKeyParameter = "OuterKey";
         public const string ApiUserParameter = "ApiUser";
 
         public const string Capture = "CaptureTransaction";
@@ -203,30 +201,7 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
             }
         }
 
-        public string InnerKey
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_innerkey))
-                {
-                    _innerkey = GetParameterByName(Payment, InnerKeyParameter).Value;
-                }
-                return _innerkey;
-            }
-        }
-
-        public string OuterKey
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_outerkey))
-                {
-                    _outerkey = GetParameterByName(Payment, OuterKeyParameter).Value;
-                }
-                return _outerkey;
-            }
-        }
-
+        
         public string ApiUser
         {
 

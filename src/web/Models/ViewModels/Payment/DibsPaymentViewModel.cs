@@ -80,8 +80,7 @@ namespace OxxCommerceStarterKit.Web.Models.ViewModels.Payment
         /// <value>The order ID.</value>
         public string OrderID { get; private set; }
         public string OrderInfo { get; set; }
-        public string OuterKey { get; set; }
-        public string InnerKey { get; set; }
+
         public string Key { get; set; }
 
         private Cart CurrentCart
@@ -212,13 +211,10 @@ namespace OxxCommerceStarterKit.Web.Models.ViewModels.Payment
 			}
             _payment = payments.FirstOrDefault(c => c.PaymentMethodId.Equals(dibs.PaymentMethod.Rows[0]["PaymentMethodId"]));
             ProcessingUrl = DIBSPaymentGateway.GetParameterByName(dibs, DIBSPaymentGateway.ProcessingUrl).Value;            
-            Key = gw.Key;
-            InnerKey = gw.InnerKey;
-            OuterKey = gw.OuterKey;
-            Key = gw.Key;
+            Key = gw.Key;            
             OrderID = orderInfo.OrderId;
             
-            ShaCalculator calculator = new ShaCalculator(InnerKey, OuterKey, Key);
+            ShaCalculator calculator = new ShaCalculator(Key);
 
             if (CurrentCart != null && CurrentCart.OrderForms != null && CurrentCart.OrderForms.Count > 0)
             {
@@ -230,14 +226,8 @@ namespace OxxCommerceStarterKit.Web.Models.ViewModels.Payment
                 Products = new List<string>();
             }
 
-            MAC = calculator.GetHex(orderInfo);
-#if DEBUG
-            string macVerification = calculator.GetMac(orderInfo);
-            if(string.Compare(MAC, macVerification, StringComparison.InvariantCulture) != 0)
-            {
-                throw new SecurityException("Cannot verify HMAC calculation");
-            }
-#endif
+            MAC = calculator.GetMac(orderInfo);
+
                       
             this.OrderInfo = orderInfo.ToString();
         }

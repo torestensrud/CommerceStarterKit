@@ -20,8 +20,6 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders
 {
     public class ShaCalculator : EncryptionCalculator
     {
-        private readonly string _keyi;
-        private readonly string _keyo;
         private readonly string _key;
 
         public ShaCalculator()
@@ -29,17 +27,13 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders
 
         }
 
-        public ShaCalculator(string keyi, string keyo, string key)
+        public ShaCalculator(string key)
         {
-            _keyi = keyi;
-            _keyo = keyo;
+
             _key = key;
         }
 
-        public string GetHex(OrderInfo message)
-        {
-            return base.HashSHAHex(_keyi,_keyo, message.ToString());
-        }
+     
 
         public string GetMac(OrderInfo info)
         {

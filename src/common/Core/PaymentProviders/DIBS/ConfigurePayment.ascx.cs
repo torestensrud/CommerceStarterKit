@@ -50,10 +50,6 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
                 SetTextBoxValue(DIBSPaymentGateway.ProcessingUrl,ProcessingUrl);
 
                 SetTextBoxValue(DIBSPaymentGateway.KeyParameter,Key);
-
-                SetTextBoxValue(DIBSPaymentGateway.InnerKeyParameter,InnerKey);
-
-                SetTextBoxValue(DIBSPaymentGateway.OuterKeyParameter,OuterKey);             
             }
             else
             {
@@ -107,12 +103,7 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
 
                     SaveParameter(DIBSPaymentGateway.ProcessingUrl, ProcessingUrl, paymentMethodId);
 
-                    SaveParameter(DIBSPaymentGateway.KeyParameter, Key, paymentMethodId);
-
-                    SaveParameter(DIBSPaymentGateway.InnerKeyParameter, InnerKey, paymentMethodId);
-
-                    SaveParameter(DIBSPaymentGateway.OuterKeyParameter, OuterKey, paymentMethodId);
-                 
+                    SaveParameter(DIBSPaymentGateway.KeyParameter, Key, paymentMethodId);                 
                 }
             }
 
