@@ -87,6 +87,15 @@ namespace OxxCommerceStarterKit.Web.Jobs
 			string externalOrderNumber = service.ExportOrder(purchaseOrder);
 			_log.Debug("Exported {0} to external system, got {1} back", purchaseOrder.TrackingNumber, externalOrderNumber);
 			
+            // TODO: This design could be better
+            // It might take days to get a status update from a backend system. We
+            // cannot export the same order many times, that would be a problem.
+            // Instead, we should add a flag to indicate the order has been exported, 
+            // save it on order and reserve the BackendOrderNumber field to the
+            // actual order id in the back-end. This will allow us to track that
+            // an order has been exported, but not completed yet.
+            // We could also use a custom Order Status for this
+
 			ExportOrderInformation result = new ExportOrderInformation
 			{
 				ExternalOrderId = externalOrderNumber,
