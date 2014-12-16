@@ -11,6 +11,7 @@ Copyright (C) 2013-2014 BV Network AS
 using System.ComponentModel.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
+using OxxCommerceStarterKit.Core.Attributes;
 
 namespace OxxCommerceStarterKit.Web.Models.PageTypes.Payment
 {
@@ -18,7 +19,8 @@ namespace OxxCommerceStarterKit.Web.Models.PageTypes.Payment
 		GUID = "171d2834-df08-4cb1-8921-79ea32e185f9", 
 		Description = "", 
 		AvailableInEditMode = false,
-		GroupName = "Pages")]
+		GroupName = "Payment")]
+    [SiteImageUrl]
     public class DibsPaymentPage : BasePaymentPage
 	{
         [Display(

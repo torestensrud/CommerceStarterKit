@@ -65,7 +65,11 @@ namespace OxxCommerceStarterKit.Web.Controllers
                 ExpandOrderInformation = true
 			};
 
-            GenericPaymentViewModel<GenericPaymentPage> model = new GenericPaymentViewModel<GenericPaymentPage>(new Guid(currentPage.PaymentMethod), currentPage, orderInfo, ch.Cart);
+		    Guid paymentMethod = Guid.Empty; // When not set (creating a page), this is null
+            if(string.IsNullOrEmpty(currentPage.PaymentMethod) == false)
+                paymentMethod = new Guid(currentPage.PaymentMethod);
+
+            GenericPaymentViewModel<GenericPaymentPage> model = new GenericPaymentViewModel<GenericPaymentPage>(paymentMethod, currentPage, orderInfo, ch.Cart);
 
             // Get cart and track it
             Api.CartController cartApiController = new Api.CartController();

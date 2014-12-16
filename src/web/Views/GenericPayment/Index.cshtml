@@ -1,18 +1,17 @@
 ﻿@model OxxCommerceStarterKit.Web.Models.ViewModels.Payment.GenericPaymentViewModel<OxxCommerceStarterKit.Web.Models.PageTypes.Payment.GenericPaymentPage>
 
 
-@Html.PropertyFor(x=>x.CurrentPage.MainBody)
-
-
 <div class="orders-page">
     <h1>@Model.CurrentPage.PageName</h1>
 
+    @Html.PropertyFor(x => x.CurrentPage.MainBody)
+
+
     @using (Html.BeginForm())
     {
-
-        <div class="col-lg-6 text-center">
-            <input type="submit" value="Complete order" class="btn btn-primary center-block" />
-        </div>
+            <div class="col-lg-6">
+                <input type="submit" value="Complete order" class="btn btn-primary" />
+            </div>
 
 
     }

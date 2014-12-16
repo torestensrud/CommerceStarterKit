@@ -63,7 +63,7 @@ namespace OxxCommerceStarterKit.Web.Models.PageTypes
             Name = "Payment Container",
             Description = "The container page for different payment methods.",
             GroupName = SystemTabNames.Settings,
-            Order = 10)]
+            Order = 33)]
         [CultureSpecific]
         public virtual PageReference PaymentContainerPage { get; set; }
 
@@ -161,14 +161,7 @@ namespace OxxCommerceStarterKit.Web.Models.PageTypes
 			Order=90)]
 		public virtual ContentReference LoginPage { get; set; }
 
-		[Searchable(false)]
-		[Display(Name = "DIBS Payment Page",
-			GroupName = SystemTabNames.Settings,
-			Order = 100)]
-		[CultureSpecific]
-		public virtual ContentReference DibsPaymentPage { get; set; }
-
-		[Searchable(false)]
+	    [Searchable(false)]
 		[Display(Name = "Search Page",
 			GroupName = SystemTabNames.Settings,
 			Order = 110)]
