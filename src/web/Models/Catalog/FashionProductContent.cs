@@ -27,6 +27,7 @@ using Mediachase.Commerce;
 using Microsoft.Ajax.Utilities;
 using OxxCommerceStarterKit.Core.Extensions;
 using OxxCommerceStarterKit.Web.EditorDescriptors;
+using OxxCommerceStarterKit.Web.EditorDescriptors.SelectionFactories;
 using OxxCommerceStarterKit.Web.Models.Blocks.Contracts;
 using OxxCommerceStarterKit.Web.Models.Catalog.Base;
 using OxxCommerceStarterKit.Web.Models.FindModels;

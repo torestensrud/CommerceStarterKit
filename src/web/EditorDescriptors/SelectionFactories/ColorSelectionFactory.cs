@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using EPiServer.Globalization;
 using EPiServer.Shell.ObjectEditing;
 
-namespace OxxCommerceStarterKit.Web.EditorDescriptors
+namespace OxxCommerceStarterKit.Web.EditorDescriptors.SelectionFactories
 {
     public class ColorSelectionFactory : ISelectionFactory
     {

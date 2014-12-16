@@ -1142,7 +1142,7 @@
     <Compile Include="Controllers\ReceiptPageController.cs" />
     <Compile Include="Controllers\RegisterPageController.cs" />
     <Compile Include="Controllers\WineSKUContentController.cs" />
-    <Compile Include="EditorDescriptors\ColorSelectionFactory.cs" />
+    <Compile Include="EditorDescriptors\SelectionFactories\ColorSelectionFactory.cs" />
     <Compile Include="EditorDescriptors\HotSpotsEditorDescriptor.cs" />
     <Compile Include="EditorDescriptors\ProductColor.cs" />
     <Compile Include="Extensions\ListItemCollectionExtensions.cs" />
