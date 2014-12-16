@@ -10,10 +10,7 @@ Copyright (C) 2013-2014 BV Network AS
 
 using System.ComponentModel.DataAnnotations;
 using EPiServer.Core;
-using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
-using OxxCommerceStarterKit.Web.EditorDescriptors;
 
 namespace OxxCommerceStarterKit.Web.Models.PageTypes.Payment
 {
@@ -22,13 +19,8 @@ namespace OxxCommerceStarterKit.Web.Models.PageTypes.Payment
 		Description = "", 
 		AvailableInEditMode = false,
 		GroupName = "Pages")]
-	public class DibsPaymentPage : PageData
+    public class DibsPaymentPage : BasePaymentPage
 	{
-		[CultureSpecific]
-		[EditorDescriptor(EditorDescriptorType = typeof(PaymentMethodEditorDescriptor))]
-		public virtual string PaymentMethod { get; set; }
-
-
         [Display(
                     Name = "Cancel Page title",
                     Description = "Cancel Page ",

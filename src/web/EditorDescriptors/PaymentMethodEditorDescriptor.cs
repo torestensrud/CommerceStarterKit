@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using EPiServer.Shell.ObjectEditing;
 using EPiServer.Shell.ObjectEditing.EditorDescriptors;
 using OxxCommerceStarterKit.Core;
+using OxxCommerceStarterKit.Web.EditorDescriptors.SelectionFactories;
 
 namespace OxxCommerceStarterKit.Web.EditorDescriptors
 {

@@ -13,7 +13,7 @@ using EPiServer.Core;
 using EPiServer.Shell.ObjectEditing;
 using Mediachase.Commerce.Orders.Managers;
 
-namespace OxxCommerceStarterKit.Web.EditorDescriptors
+namespace OxxCommerceStarterKit.Web.EditorDescriptors.SelectionFactories
 {
     public class PaymentMethodSelectionFactory : ISelectionFactory
     {

@@ -39,6 +39,7 @@ namespace OxxCommerceStarterKit.Web.Models.PageTypes
 		[CultureSpecific]
 		public virtual PageReference CartPage { get; set; }
 
+
 		[Searchable(false)]
 		[Display(
 			Name = "WishList Page",
@@ -56,6 +57,15 @@ namespace OxxCommerceStarterKit.Web.Models.PageTypes
 			Order = 30)]
 		[CultureSpecific]
 		public virtual PageReference CheckoutPage { get; set; }
+
+        [Searchable(false)]
+        [Display(
+            Name = "Payment Container",
+            Description = "The container page for different payment methods.",
+            GroupName = SystemTabNames.Settings,
+            Order = 10)]
+        [CultureSpecific]
+        public virtual PageReference PaymentContainerPage { get; set; }
 
 		[Searchable(false)]
 		[Display(

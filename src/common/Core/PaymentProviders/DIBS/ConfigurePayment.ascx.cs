@@ -43,9 +43,7 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
         {
             if ((this._paymentMethodDto != null) && (this._paymentMethodDto.PaymentMethodParameter != null))
             {                
-                SetTextBoxValue(DIBSPaymentGateway.UserParameter, this.User);
-
-                SetTextBoxValue(DIBSPaymentGateway.PasswordParameter,Password);
+                SetTextBoxValue(DIBSPaymentGateway.UserParameter, this.User);                
 
                 SetTextBoxValue(DIBSPaymentGateway.ProcessingUrl,ProcessingUrl);
 
@@ -96,10 +94,6 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
                     }                    
                  
                     SaveParameter(DIBSPaymentGateway.UserParameter, User, paymentMethodId);
-
-                    SaveParameter(DIBSPaymentGateway.ApiUserParameter,ApiUser, paymentMethodId);
-
-                    SaveParameter(DIBSPaymentGateway.PasswordParameter, Password, paymentMethodId);
 
                     SaveParameter(DIBSPaymentGateway.ProcessingUrl, ProcessingUrl, paymentMethodId);
 

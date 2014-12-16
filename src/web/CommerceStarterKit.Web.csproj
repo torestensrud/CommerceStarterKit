@@ -78,6 +78,7 @@
     <Content Include="Content\css\print.min.css" />
     <Content Include="Content\Images\commerce-shop-logo.png" />
     <Content Include="Content\Images\paymentMethods\pay by credit card.png" />
+    <Content Include="Content\Images\paymentMethods\telefonbetaling.png" />
     <Content Include="Content\Images\paymentMethods\pay by phone.png" />
     <Content Include="Content\Images\StartShop.png" />
     <Content Include="lang\bvnerrorhandler.xml" />
@@ -555,6 +556,7 @@
     <Content Include="Views\Shared\SetupWarning.cshtml" />
     <Content Include="Views\WineProductSearchBlock\FindError.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\VideoFile.cshtml" />
+    <Content Include="Views\GenericPayment\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1080,12 +1082,15 @@
     <Compile Include="Api\ImportEPiServerDataController.cs" />
     <Compile Include="Controllers\Admin\DeveloperToolsController.cs" />
     <Compile Include="Controllers\BasePartialContentController.cs" />
+    <Compile Include="Controllers\GenericPaymentController.cs" />
     <Compile Include="Controllers\FashionProductPartialController.cs" />
     <Compile Include="Controllers\VideoFileController.cs" />
     <Compile Include="EditorDescriptors\TinyMcePlugins\AllowExtendedAttributes.cs" />
     <Compile Include="Extensions\PriceExtensions.cs" />
     <Compile Include="Extensions\UrlExtentions.cs" />
     <Compile Include="Models\Files\VideoFile.cs" />
+    <Compile Include="Models\PageTypes\Payment\BasePaymentPage.cs" />
+    <Compile Include="Models\PageTypes\Payment\GenericPaymentPage.cs" />
     <Compile Include="Models\ViewModels\Email\NotificationSettings.cs" />
     <Compile Include="Models\ViewModels\Payment\CancelPaymentViewModel.cs" />
     <Compile Include="Controllers\WineProductSearchBlockController.cs" />
@@ -1103,6 +1108,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\ViewModels\ChromeLanguageInfo.cs" />
+    <Compile Include="Models\ViewModels\Payment\GenericPaymentViewModel.cs" />
     <Compile Include="Models\ViewModels\ProductListViewModel.cs" />
     <Compile Include="Models\ViewModels\Simple\LandingNodeViewModel.cs" />
     <Compile Include="Models\ViewModels\Simple\Product.cs" />
@@ -1183,7 +1189,7 @@
     <Compile Include="Controllers\VariationContentController.cs" />
     <Compile Include="Controllers\WishListPageController.cs" />
     <Compile Include="EditorDescriptors\PaymentMethodEditorDescriptor.cs" />
-    <Compile Include="EditorDescriptors\PaymentMethodSelectionFactory.cs" />
+    <Compile Include="EditorDescriptors\SelectionFactories\PaymentMethodSelectionFactory.cs" />
     <Compile Include="Extensions\ViewContextExtensions.cs" />
     <Compile Include="global.asax.cs">
       <DependentUpon>global.asax</DependentUpon>

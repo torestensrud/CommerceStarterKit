@@ -355,9 +355,7 @@
     <Compile Include="Services\OrderService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PaymentProviders\DIBS\ConfigurePayment.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="PaymentProviders\DIBS\ConfigurePayment.ascx" />
     <Content Include="PaymentProviders\DIBS\EditTab.ascx" />
   </ItemGroup>
   <ItemGroup>

@@ -19,6 +19,7 @@ using EPiServer;
 using EPiServer.Core;
 using EPiServer.Framework.Localization;
 using EPiServer.ServiceLocation;
+using EPiServer.UI.Report;
 using EPiServer.Web.Routing;
 using Mediachase.BusinessFoundation.Data;
 using Mediachase.Commerce;
@@ -35,6 +36,7 @@ using OxxCommerceStarterKit.Core.Repositories;
 using OxxCommerceStarterKit.Web.Business;
 using OxxCommerceStarterKit.Web.Business.Analytics;
 using OxxCommerceStarterKit.Web.Models;
+using OxxCommerceStarterKit.Web.Models.PageTypes;
 using OxxCommerceStarterKit.Web.Models.PageTypes.Payment;
 using OxxCommerceStarterKit.Web.Models.PageTypes.System;
 using OxxCommerceStarterKit.Web.Models.ViewModels;
@@ -176,8 +178,9 @@ namespace OxxCommerceStarterKit.Web.Controllers
 
                     // TODO: This assume the different payment pages are direct children of the start page
                     // and could break the payment if we move the pages.
-				    DibsPaymentPage page = null;
-				    foreach (DibsPaymentPage p in _contentRepository.GetChildren<DibsPaymentPage>(ContentReference.StartPage))
+				    BasePaymentPage page = null;
+				    var startPage = _contentRepository.Get<HomePage>(ContentReference.StartPage);
+				    foreach (var p in _contentRepository.GetChildren<BasePaymentPage>(startPage.Settings.PaymentContainerPage))
 				    {
 				        if (p.PaymentMethod.Equals(model.PaymentInfo.SelectedPayment.ToString()))
 				        {
@@ -213,12 +216,12 @@ namespace OxxCommerceStarterKit.Web.Controllers
         /// <param name="lineItems"></param>
 		void ConfirmStocks(IEnumerable<LineItem> lineItems)
 		{
-            /// TODO: Additonal stock check
+            // TODO: Additonal stock check
 		    
 			var warehouseInventory = ServiceLocator.Current.GetInstance<IWarehouseInventoryService>();
 			var warehouseRepository = ServiceLocator.Current.GetInstance<IWarehouseRepository>();
 
-            /// TODO: Confirm use of default warehouse for your project
+            // TODO: Confirm use of default warehouse for your project
             var epiWarehouses = warehouseRepository.List().Where(w => w.Code.Equals("default")).ToList();
 
             if(lineItems == null || lineItems.Any() == false)

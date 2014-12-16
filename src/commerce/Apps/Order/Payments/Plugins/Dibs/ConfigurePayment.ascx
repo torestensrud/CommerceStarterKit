@@ -16,29 +16,7 @@
                 <asp:RequiredFieldValidator ControlToValidate="User" Display="dynamic" Font-Name="verdana" Font-Size="9pt" ErrorMessage="<%$ Resources:OrderStrings, Payment_User_Required %>"
                     runat="server" ID="RequiredFieldValidator2"></asp:RequiredFieldValidator>
             </td>
-        </tr>
-        <tr>
-            <td colspan="2" class="FormSpacerCell"></td>
-        </tr>
-        <tr>
-            <td class="FormLabelCell">
-                <asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:OrderStrings, Payment_API_User %>" />:</td>
-            <td class="FormFieldCell">
-                <asp:TextBox runat="server" ID="ApiUser" Width="230"></asp:TextBox><br>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" class="FormSpacerCell"></td>
-        </tr>
-        <tr>
-            <td class="FormLabelCell">
-                <asp:Literal ID="Literal5" runat="server" Text="<%$ Resources:OrderStrings, Payment_Merchant_Password%>" />:</td>
-            <td class="FormFieldCell">
-                <asp:TextBox runat="server" ID="Password" TextMode="Password" Width="230"></asp:TextBox><br>
-                <asp:RequiredFieldValidator ControlToValidate="Password" Display="dynamic" Font-Name="verdana" Font-Size="9pt" ErrorMessage="<%$ Resources:OrderStrings, Payment_Password_Required %>"
-                    runat="server" ID="RequiredFieldValidator4"></asp:RequiredFieldValidator>
-            </td>
-        </tr>
+        </tr>     
         <tr>
             <td colspan="2" class="FormSpacerCell"></td>
         </tr>

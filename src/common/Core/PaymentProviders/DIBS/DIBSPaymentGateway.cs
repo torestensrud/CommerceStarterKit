@@ -28,11 +28,9 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
 {
     public class DIBSPaymentGateway : AbstractPaymentGateway
     {
-        public const string UserParameter = "MerchantID";
-        public const string PasswordParameter = "Password";
+        public const string UserParameter = "MerchantID";        
         public const string ProcessingUrl = "ProcessingUrl";
-        public const string KeyParameter = "Key";
-        public const string ApiUserParameter = "ApiUser";
+        public const string KeyParameter = "Key";        
 
         public const string Capture = "CaptureTransaction";
         public const string Refund = "RefundTransaction";
@@ -41,10 +39,8 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
         public const string PaymentCompleted = "DIBS payment completed";
 
         private string _merchant;
-        private string _password;
         private PaymentMethodDto _payment;
-        private static string _key;
-        private string _apiuser;
+        private static string _key;        
 
 
         private ILogger _log = LogManager.GetLogger();
@@ -158,22 +154,7 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
                 return _merchant;
             }
         }
-
-        /// <summary>
-        /// Gets the password.
-        /// </summary>
-        /// <value>The password.</value>
-        public string Password
-        {
-            get
-            {
-                if (String.IsNullOrEmpty(_password))
-                {
-                    _password = GetParameterByName(Payment, DIBSPaymentGateway.PasswordParameter).Value;
-                }
-                return _password;
-            }
-        }
+      
 
         public string Key
         {
@@ -185,21 +166,6 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
                 }
                 return _key;
             }
-        }
-
-        
-        public string ApiUser
-        {
-
-            get
-            {
-                if (string.IsNullOrEmpty(_apiuser))
-                {
-                    _apiuser = GetParameterByName(Payment, ApiUserParameter).Value;
-                }
-                return _apiuser;
-            }
-
         }
 
 

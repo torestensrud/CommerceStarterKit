@@ -14,6 +14,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security;
 using System.Web;
+using AuthorizeNet;
 using EPiServer;
 using EPiServer.Core;
 using EPiServer.Logging;
@@ -32,12 +33,12 @@ using OxxCommerceStarterKit.Core.PaymentProviders.DIBS;
 using OxxCommerceStarterKit.Web.Business;
 using OxxCommerceStarterKit.Web.Models.PageTypes;
 using OxxCommerceStarterKit.Web.Models.PageTypes.Payment;
+using LineItem = Mediachase.Commerce.Orders.LineItem;
 
 namespace OxxCommerceStarterKit.Web.Models.ViewModels.Payment
 {
-    public class DibsPaymentViewModel : PageViewModel<DibsPaymentPage>
-    {
-        protected static ILogger _log = LogManager.GetLogger();
+    public class DibsPaymentViewModel : GenericPaymentViewModel<DibsPaymentPage>
+    {        
         private Cart _currentCart = null;
         private Mediachase.Commerce.Orders.Payment _payment;
         private PaymentMethodDto _paymentMethod;
@@ -74,12 +75,7 @@ namespace OxxCommerceStarterKit.Web.Models.ViewModels.Payment
         public string MAC { get; set; }
         public string AcceptReturnUrl { get; set; }
         public string CancelReturnUrl { get; set; }
-        /// <summary>
-        /// Gets the order ID.
-        /// </summary>
-        /// <value>The order ID.</value>
-        public string OrderID { get; private set; }
-        public string OrderInfo { get; set; }
+        
 
         public string Key { get; set; }
 
@@ -111,34 +107,6 @@ namespace OxxCommerceStarterKit.Web.Models.ViewModels.Payment
         }
 
 
-        /// <summary>
-        /// Gets the amount.
-        /// </summary>
-        /// <value>The amount.</value>
-        public string Amount
-        {
-            get
-            {
-                return (_payment != null) ? (_payment.Amount * 100).ToString("#") : string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Gets the currency code.
-        /// </summary>
-        /// <value>The currency code.</value>
-        public Currency Currency
-        {
-            get
-            {
-                if (_payment == null)
-                {
-                    return string.Empty;
-                }
-                return string.IsNullOrEmpty(_payment.Parent.Parent.BillingCurrency) ?
-                    SiteContext.Current.Currency : new Currency(_payment.Parent.Parent.BillingCurrency);
-            }
-        }
 
 
         /// <summary>
@@ -178,7 +146,7 @@ namespace OxxCommerceStarterKit.Web.Models.ViewModels.Payment
         }
 
 
-        public DibsPaymentViewModel(IContentRepository contentRepository, DibsPaymentPage currentPage, OrderInfo orderInfo, Cart cart) : base(currentPage)
+        public DibsPaymentViewModel(IContentRepository contentRepository, DibsPaymentPage currentPage, OrderInfo orderInfo, Cart cart) : base(new Guid(currentPage.PaymentMethod),currentPage,orderInfo,cart)
         {
             SiteConfiguration configuration = SiteConfiguration.Current();
             PaymentMethodDto dibs = PaymentManager.GetPaymentMethodBySystemName(DIBSSystemName, SiteContext.Current.LanguageName);
