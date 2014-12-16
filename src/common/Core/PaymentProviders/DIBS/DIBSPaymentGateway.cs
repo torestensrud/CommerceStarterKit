@@ -9,32 +9,20 @@ Copyright (C) 2013-2014 BV Network AS
 */
 
 using System;
-using System.Collections.Specialized;
 using System.Net;
-using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using EPiServer;
 using EPiServer.Core;
 using EPiServer.Logging;
-using log4net.Repository.Hierarchy;
-using Mediachase.Commerce;
 using Mediachase.Commerce.Core;
 using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Orders.Dto;
 using Mediachase.Commerce.Orders.Managers;
 using Mediachase.Commerce.Plugins.Payment;
-
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
 using System.IO;
 using Newtonsoft.Json;
-using System.Globalization;
-using System.Security.Cryptography;
 
 namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
 {
@@ -56,8 +44,6 @@ namespace OxxCommerceStarterKit.Core.PaymentProviders.DIBS
         private string _password;
         private PaymentMethodDto _payment;
         private static string _key;
-        private string _innerkey;
-        private string _outerkey;
         private string _apiuser;
 
 
