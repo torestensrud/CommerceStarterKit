@@ -17,9 +17,6 @@ namespace OxxCommerceStarterKit.Web.Models.ViewModels
 {
 	public class NewsletterViewModel : INotificationSettings
 	{
-		public NewsletterViewModel(NewsletterPage currentPage)
-			: this(currentPage, EmailBase.GetNotificationSettings()) { }
-
 		public NewsletterViewModel(NewsletterPage currentPage, NotificationSettings settings)
 		{
 			NewsletterPage = currentPage;

@@ -17,17 +17,24 @@ using EPiServer.Web.Mvc;
 using EPiServer.Web.Routing;
 using OxxCommerceStarterKit.Web.Models.PageTypes;
 using OxxCommerceStarterKit.Web.Models.ViewModels;
+using OxxCommerceStarterKit.Web.Services.Email;
 
 namespace OxxCommerceStarterKit.Web.Controllers
 {
 	[TemplateDescriptor()]
 	public class NewsletterController : PageController<NewsletterPage>
     {
+        private readonly INotificationSettingsRepository _notificationSettingsRepository;
+        public NewsletterController(INotificationSettingsRepository notificationSettingsRepository)
+        {
+            _notificationSettingsRepository = notificationSettingsRepository;
+        }
+
         //
         // GET: /Newsletter/
         public ActionResult Index(NewsletterPage currentPage, HomePage homePage)
         {
-			var model = new NewsletterViewModel(currentPage);
+			var model = new NewsletterViewModel(currentPage, _notificationSettingsRepository.GetNotificationSettings());
 
 			var contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
 

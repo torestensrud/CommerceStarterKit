@@ -26,7 +26,7 @@ namespace OxxCommerceStarterKit.Web.Models.FindModels
 
         public FindProduct()
         {
-            
+
         }
 
         public FindProduct(EntryContentBase entryContentBase, string language)
@@ -43,7 +43,7 @@ namespace OxxCommerceStarterKit.Web.Models.FindModels
             CategoryName = entryContentBase.GetCategoryName(language);
             ProductUrl = urlResolverInjected.Service.GetUrl(entryContentBase.ContentLink, language);
             DefaultImageUrl = entryContentBase.GetDefaultImage();
-         
+
         }
 
         [Id]
@@ -57,9 +57,9 @@ namespace OxxCommerceStarterKit.Web.Models.FindModels
         public string DescriptiveColor { get; set; }
         public List<string> Sizes { get; set; }
         public string SizeUnit { get; set; }
-		public string SizeType { get; set; }
+        public string SizeType { get; set; }
         public string Fit { get; set; }
-        public List<string> SizesList { get; set; } 
+        public List<string> SizesList { get; set; }
         public List<string> ParentCategoryName { get; set; }
         public List<int> ParentCategoryId { get; set; }
         public string MainCategoryName { get; set; }
@@ -76,9 +76,9 @@ namespace OxxCommerceStarterKit.Web.Models.FindModels
         public string DiscountedPrice { get; set; }
         public decimal DiscountedPriceAmount { get; set; }
         public List<FashionVariant> Variants { get; set; }
-		public string NewItemText { get; set; }
-		public int SalesCounter { get; set; }
-		public string CustomerClubPrice { get; set; }
+        public string NewItemText { get; set; }
+        public int SalesCounter { get; set; }
+        public string CustomerClubPrice { get; set; }
         public string Brand { get; set; }
         //Wine
         public string Varieties { get; set; }
@@ -91,17 +91,18 @@ namespace OxxCommerceStarterKit.Web.Models.FindModels
         public string Closure { get; set; }
         public List<string> GrapeMixList { get; set; }
         public string Country { get; set; }
-     
+        public IEnumerable<string> GoesWellWith { get; set; }
     }
 
     public class WineFindProduct : FindProduct
     {
         public WineFindProduct()
         {
-            
+
         }
 
-        public WineFindProduct(EntryContentBase entryContentBase, string language) : base(entryContentBase, language)
+        public WineFindProduct(EntryContentBase entryContentBase, string language)
+            : base(entryContentBase, language)
         {
             WineSKUContent wineSkuContent = entryContentBase as WineSKUContent;
             if (wineSkuContent != null)
@@ -116,11 +117,10 @@ namespace OxxCommerceStarterKit.Web.Models.FindModels
                 Alcohol = wineSkuContent.Alcohol;
                 Closure = wineSkuContent.Closure;
                 Brand = wineSkuContent.Facet_Brand;
-
             }
         }
 
-       
+
     }
 
 }
