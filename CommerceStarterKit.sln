@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommerceStarterKit.Core", "src\common\Core\CommerceStarterKit.Core.csproj", "{01A92F8F-E704-4F78-8DCA-67E76B8A6CCF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflow", "Workflow", "{2DA9D9C0-BFD5-4CA4-B93E-1AAC7CD54853}"
