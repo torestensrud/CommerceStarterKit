@@ -33,7 +33,7 @@ using OxxCommerceStarterKit.Web.Services;
 
 namespace OxxCommerceStarterKit.Web.Models.Catalog
 {
-    [CatalogContentType(GUID = "B96A3924-D07D-4ECA-BFA3-C0C3138CD138", MetaClassName = "WineSKU", 
+    [CatalogContentType(GUID = "B96A3924-D07D-4ECA-BFA3-C0C3138CD138", MetaClassName = "WineSKU",
         DisplayName = "Wine",
         Description = "A variation with information about wine.",
         GroupName = "Wine"
