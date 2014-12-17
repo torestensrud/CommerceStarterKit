@@ -8,7 +8,7 @@ From the Wiki: [About the Starter Kit](https://github.com/OXXAS/CommerceStarterK
 2. Download the databases from [CommerceStarterKit-Database](https://github.com/OXXAS/CommerceStarterKit-Database/tree/master/Databases) ([download zip file](https://github.com/OXXAS/CommerceStarterKit-Database/blob/master/Databases/CommerceStarterKit.zip?raw=true))
 3. Unzip the databases to the /db/ folder
 4. Open the solution in Visual Studio 2013
-5. Run it
+5. Run it (also see [How to Start Commerce Manager](#how-to-start-commerce-manager))
 6. Default admin account for web and manager sites is: **admin \ store**
 7. Configure dependencies for more features 
 
@@ -34,12 +34,7 @@ The payment step of the checkout requires a DIBS demo account. If your company d
 You need the following settings from your DIBS account:
 
 * API UserId (this is your merchant ID)
-* Merchant Password (this is your merchant password)
-* MD5 key 1
-* MD5 key 2
-* HMAC key for MAC calculation
-* HMAC inner key for MAC calculation (Ki)
-* HMAC outer key for MAC calculation (Ko)
+* HMAC key for MAC calculation (K)
 
 Configure payment settings:
 
