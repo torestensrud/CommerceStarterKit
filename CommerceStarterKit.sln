@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommerceStarterKit.Core", "src\common\Core\CommerceStarterKit.Core.csproj", "{01A92F8F-E704-4F78-8DCA-67E76B8A6CCF}"
 EndProject
@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPiCode.Commerce.Workflow",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPiCode.Commerce.Workflow.Activities", "src\common\Mediachase.Commerce.Workflow.Activities\EPiCode.Commerce.Workflow.Activities.csproj", "{B7957825-3E86-4EA6-8CF3-9BDF7DC8C7A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommerceStarterKit.Web.UnitTests", "CommerceStarterKit.Web.UnitTests\CommerceStarterKit.Web.UnitTests.csproj", "{102BB184-DC1A-43D3-9462-2A32BE581878}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommerceStarterKit.Web.UnitTests", "src\CommerceStarterKit.Web.UnitTests\CommerceStarterKit.Web.UnitTests.csproj", "{102BB184-DC1A-43D3-9462-2A32BE581878}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
