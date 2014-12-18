@@ -35,6 +35,8 @@ using Mediachase.Commerce.Catalog.Events;
 using OxxCommerceStarterKit.Core;
 using OxxCommerceStarterKit.Core.Services;
 using OxxCommerceStarterKit.Web.ResetPassword;
+using OxxCommerceStarterKit.Web.Services.Email;
+using OxxCommerceStarterKit.Web.Services.Email.Models;
 using Postal;
 using EmailService = OxxCommerceStarterKit.Web.Services.Email.EmailService;
 using IEmailService = OxxCommerceStarterKit.Web.Services.Email.IEmailService;
@@ -131,6 +133,8 @@ namespace OxxCommerceStarterKit.Web.Business.Initialization
 			context.Container.Configure(c=> c.For<ICartService>().Use<CartService>());
 
 			context.Container.Configure(c => c.For<IEmailService>().Use<EmailService>());
+            context.Container.Configure(c => c.For<IEmailDispatcher>().Use<EmailDispatcher>());
+            context.Container.Configure(c => c.For<INotificationSettingsRepository>().Use<NotificationSettingsRepository>());
 
 			// Postal
 			context.Container.Configure(c => c.For<Postal.IEmailService>().Use<Postal.EmailService>());
