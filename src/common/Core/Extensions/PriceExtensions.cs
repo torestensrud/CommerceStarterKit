@@ -223,7 +223,6 @@ namespace OxxCommerceStarterKit.Core.Extensions
             return string.Empty;
         }
 
-        // TODO: MOVE TO EXTENSION METHODS FOR RE-USE
         public static string GetCustomerClubDisplayPrice(this List<VariationContent> variations, IMarket market = null)
         {
             if (variations.Any())
