@@ -4,6 +4,7 @@
 <br />
 <asp:Repeater ID="rptAddFromRecipientLists" runat="server" enableviewstate="false">
     <HeaderTemplate>
+        <div style="height: 300px !important; overflow: auto;">
         <table class="table table-striped">
             <tr>
                 <th>&nbsp;</th>
@@ -27,5 +28,6 @@
     </ItemTemplate>
     <FooterTemplate>
         </table>
+        </div>
     </FooterTemplate>
 </asp:Repeater>

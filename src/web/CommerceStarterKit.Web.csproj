@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OxxCommerceStarterKit.Web</RootNamespace>
     <AssemblyName>OxxCommerceStarterKit.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>false</SignAssembly>
     <DelaySign>false</DelaySign>
@@ -612,8 +612,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\EPiCode.Newsletter.3.0.9\lib\net45\BVNetwork.EPiSendMail.dll</HintPath>
     </Reference>
-    <Reference Include="BVNetwork.EPiSendMail.CommerceProvider">
-      <HintPath>..\..\packages\EPiCode.Newsletter.Commerce.3.0.9\lib\net45\BVNetwork.EPiSendMail.CommerceProvider.dll</HintPath>
+    <Reference Include="BVNetwork.EPiSendMail.CommerceProvider, Version=3.0.8.22951, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EPiCode.Newsletter.Commerce.3.0.10\lib\net451\BVNetwork.EPiSendMail.CommerceProvider.dll</HintPath>
     </Reference>
     <Reference Include="BVNetwork.FileNotFound.RedirectGadget, Version=3.1.1.14789, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -940,9 +941,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
-    <Reference Include="System.Core">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
