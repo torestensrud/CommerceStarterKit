@@ -92,7 +92,7 @@ namespace OxxCommerceStarterKit.Web.Controllers
 			if (Membership.ValidateUser(user, pw))
 			{
 				MembershipUser account = Membership.GetUser(user);
-				if (user != null)
+                if (account != null)
 				{
 
 					var profile = SecurityContext.Current.CurrentUserProfile as CustomerProfileWrapper;
