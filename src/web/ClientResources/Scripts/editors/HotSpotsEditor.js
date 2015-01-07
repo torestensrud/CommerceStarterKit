@@ -60,7 +60,7 @@
 					value: value,
 					cultureSpecific: false,
 					allowedTypes : [ "episerver.core.icontentdata" ],
-					roots : ["1"],
+					roots: ["-1073741823__CatalogContent"],
 					label: 'Select product',
 					allowedDndTypes: [ "episerver.core.icontentdata.reference" ]
 				});
