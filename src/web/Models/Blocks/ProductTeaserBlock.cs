@@ -33,6 +33,7 @@ namespace OxxCommerceStarterKit.Web.Models.Blocks
 			Order = 20)]
 		[CultureSpecific]
 		//[AllowedTypes(typeof(ProductBase))]
+        [UIHint(EPiServer.Commerce.UIHint.CatalogContent)]
 		public virtual ContentReference Product { get; set; }
 
 		[Display(
