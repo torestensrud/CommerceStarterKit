@@ -97,6 +97,9 @@ namespace OxxCommerceStarterKit.Web.Extensions
 
 		public static MvcHtmlString AssetImage(this HtmlHelper html, EntryContentBase entry, IPermanentLinkMapper permanentLinkMapper)
 		{
+            if(entry == null)
+                return MvcHtmlString.Empty;
+
 			var commerceMedia = entry.GetCommerceMedia();
 			if (commerceMedia == null)
 			{

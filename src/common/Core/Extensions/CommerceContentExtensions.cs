@@ -86,6 +86,8 @@ namespace OxxCommerceStarterKit.Core.Extensions
 
         public static CommerceMedia GetCommerceMedia(this EntryContentBase entry, int index)
         {
+            if (entry == null)
+                return null;
             return entry.CommerceMediaCollection.OrderBy(m => m.SortOrder).Skip(index).FirstOrDefault();
         }
 

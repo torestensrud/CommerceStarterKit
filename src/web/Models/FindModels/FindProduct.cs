@@ -91,6 +91,10 @@ namespace OxxCommerceStarterKit.Web.Models.FindModels
         public string Closure { get; set; }
         public List<string> GrapeMixList { get; set; }
         public string Country { get; set; }
+
+        //Beer
+        public string Humle { get; set; }
+        public string IBU { get; set; }
      
     }
 
@@ -121,6 +125,30 @@ namespace OxxCommerceStarterKit.Web.Models.FindModels
         }
 
        
+    }
+
+
+    public class BeerFindProduct : FindProduct
+    {
+        public BeerFindProduct()
+        {
+
+        }
+
+        public BeerFindProduct(EntryContentBase entryContentBase, string language)
+            : base(entryContentBase, language)
+        {
+            var beerSkuContent = entryContentBase as BeerSKUContent;
+            if (beerSkuContent != null)
+            {
+                Alcohol = beerSkuContent.Alcohol;
+                Brand = beerSkuContent.Facet_Brand;
+                IBU = beerSkuContent.IBU;
+                Humle = beerSkuContent.Humle;
+            }
+        }
+
+
     }
 
 }

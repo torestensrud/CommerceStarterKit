@@ -557,6 +557,7 @@
     <Content Include="Views\WineProductSearchBlock\FindError.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\VideoFile.cshtml" />
     <Content Include="Views\GenericPayment\Index.cshtml" />
+    <Content Include="Views\BeerSKUContent\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1085,9 +1086,11 @@
     <Compile Include="Controllers\GenericPaymentController.cs" />
     <Compile Include="Controllers\FashionProductPartialController.cs" />
     <Compile Include="Controllers\VideoFileController.cs" />
+    <Compile Include="Controllers\BeerSKUContentController.cs" />
     <Compile Include="EditorDescriptors\TinyMcePlugins\AllowExtendedAttributes.cs" />
     <Compile Include="Extensions\PriceExtensions.cs" />
     <Compile Include="Extensions\UrlExtentions.cs" />
+    <Compile Include="Models\Catalog\BeerSKUContent.cs" />
     <Compile Include="Models\Files\VideoFile.cs" />
     <Compile Include="Models\PageTypes\Payment\BasePaymentPage.cs" />
     <Compile Include="Models\PageTypes\Payment\GenericPaymentPage.cs" />
@@ -1113,6 +1116,7 @@
     <Compile Include="Models\ViewModels\Simple\LandingNodeViewModel.cs" />
     <Compile Include="Models\ViewModels\Simple\Product.cs" />
     <Compile Include="Models\ViewModels\Simple\ProductVariant.cs" />
+    <Compile Include="Models\ViewModels\BeerSKUViewModel.cs" />
     <Compile Include="Plugins\CommerceTools\Menu.cs" />
     <Compile Include="Plugins\CommerceTools\Prices\UpdatePrices.aspx.cs">
       <DependentUpon>UpdatePrices.aspx</DependentUpon>

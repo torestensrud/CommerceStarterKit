@@ -17,7 +17,7 @@ using OxxCommerceStarterKit.Core.Models;
 namespace OxxCommerceStarterKit.Web.Models.Catalog
 {
     [CatalogContentType(GUID = "EB8059BC-AEFC-46A1-83FC-7C678D5E8258", MetaClassName = "WineStoreLandingNode")]
-    [AvailableContentTypes(Include = new Type[] { typeof(WineSKUContent), typeof(NodeContent), typeof(BundleContent), typeof(PackageContent) })]
+    [AvailableContentTypes(Include = new Type[] { typeof(WineSKUContent), typeof(BeerSKUContent), typeof(NodeContent), typeof(BundleContent), typeof(PackageContent) })]
     public class WineMainLandingNodeContent : SiteCategoryContent
     {
     }
