@@ -22,6 +22,7 @@ using Mediachase.Commerce.Core;
 using Mediachase.Commerce.Customers;
 using Mediachase.Commerce.Customers.Profile;
 using Mediachase.Commerce.Security;
+using OxxCommerceStarterKit.Core.Email;
 using OxxCommerceStarterKit.Core.Objects;
 using OxxCommerceStarterKit.Web.Business;
 using OxxCommerceStarterKit.Web.Helpers;
@@ -37,10 +38,12 @@ namespace OxxCommerceStarterKit.Web.Controllers
 		private readonly IContentRepository _contentRepository;
 		private readonly UrlResolver _urlResolver;
 		private readonly LocalizationService _localizationService;
+        private readonly ISiteSettingsProvider _siteConfiguration;
 
-		public LoginController(IContentRepository contentRepository, UrlResolver urlResolver, LocalizationService localizationService)
+		public LoginController(IContentRepository contentRepository, ISiteSettingsProvider siteConfiguration, UrlResolver urlResolver, LocalizationService localizationService)
 		{
 			_contentRepository = contentRepository;
+		    _siteConfiguration = siteConfiguration;
 			_urlResolver = urlResolver;
 			_localizationService = localizationService;
 		}
@@ -148,7 +151,7 @@ namespace OxxCommerceStarterKit.Web.Controllers
             else
             {
                 // Token is invalid, we redirect to the login page
-                string loginUrl = _urlResolver.GetUrl(SiteConfiguration.Current().Settings.LoginPage);
+                string loginUrl = _urlResolver.GetUrl(_siteConfiguration.GetSettings().LoginPage);
                 return new RedirectResult(loginUrl);
             }
 		}

@@ -8,15 +8,16 @@ Copyright (C) 2013-2014 BV Network AS
 
 */
 
-using Mediachase.Commerce.Orders;
+using OxxCommerceStarterKit.Core.Objects.SharedViewModels;
 
-namespace OxxCommerceStarterKit.Web.Services.Email
+namespace OxxCommerceStarterKit.Core.Email
 {
 	public interface IEmailService
 	{
 		bool SendResetPasswordEmail(string email, string subject, string body, string passwordHash, string resetUrl);
+        bool SendWelcomeEmail(string email);
 		bool SendWelcomeEmail(string email, string subject, string body);
-		bool SendOrderReceipt(PurchaseOrder order);
-		bool SendDeliveryReceipt(PurchaseOrder order, string language = null);
+		bool SendOrderReceipt(PurchaseOrderModel order);
+		bool SendDeliveryReceipt(PurchaseOrderModel order, string language = null);
 	}
 }

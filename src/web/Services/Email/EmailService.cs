@@ -9,8 +9,15 @@ Copyright (C) 2013-2014 BV Network AS
 */
 
 using System;
+using EPiServer;
+using EPiServer.Core;
 using EPiServer.Logging;
+using Mediachase.Commerce;
+using Mediachase.Commerce.Markets;
 using Mediachase.Commerce.Orders;
+using OxxCommerceStarterKit.Core.Email;
+using OxxCommerceStarterKit.Core.Objects.SharedViewModels;
+using OxxCommerceStarterKit.Web.Models.PageTypes;
 using OxxCommerceStarterKit.Web.Models.ViewModels.Email;
 using OxxCommerceStarterKit.Web.Services.Email.Models;
 
@@ -21,11 +28,17 @@ namespace OxxCommerceStarterKit.Web.Services.Email
         private static readonly ILogger Log = LogManager.GetLogger();
         private readonly INotificationSettingsRepository _notificationSettingsRepository;
         private readonly IEmailDispatcher _emailDispatcher;
+        private readonly ICurrentMarket _currentMarket;
+        private readonly IContentLoader _contentLoader;
+        private readonly IMarketService _marketService;
 
-        public EmailService(INotificationSettingsRepository notificationSettingsRepository, IEmailDispatcher emailDispatcher)
+        public EmailService(INotificationSettingsRepository notificationSettingsRepository, IEmailDispatcher emailDispatcher, ICurrentMarket currentMarket, IContentLoader contentLoader, IMarketService marketService)
         {
             _notificationSettingsRepository = notificationSettingsRepository;
             _emailDispatcher = emailDispatcher;
+            _currentMarket = currentMarket;
+            _contentLoader = contentLoader;
+            _marketService = marketService;
         }
 
         public bool SendResetPasswordEmail(string email, string subject, string body, string passwordHash, string resetUrl)
@@ -53,7 +66,7 @@ namespace OxxCommerceStarterKit.Web.Services.Email
             return emailMessage;
         }
 
-        private bool AttemptSendOf(Models.ResetPassword emailMessage)
+        private bool AttemptSendOf(Postal.Email emailMessage)
         {
             try
             {
@@ -66,7 +79,7 @@ namespace OxxCommerceStarterKit.Web.Services.Email
             }
         }
 
-        private bool Send(Models.ResetPassword emailMessage)
+        private bool Send(Postal.Email emailMessage)
         {
             var result = _emailDispatcher.SendEmail(emailMessage, Log);
             if (result.Success)
@@ -75,9 +88,34 @@ namespace OxxCommerceStarterKit.Web.Services.Email
             return false;
         }
 
+        public bool SendWelcomeEmail(string email)
+        {
+            return SendWelcomeEmail(email, null);
+        }
+
+        public bool SendWelcomeEmail(string email, RegisterPage currentPage)
+        {
+            if (currentPage == null)
+                currentPage = GetRegisterPage();
+            if (currentPage != null)
+                return SendWelcomeEmail(email, currentPage.EmailSubject, currentPage.EmailBody.ToString());
+            return false;
+        }
+
+        private RegisterPage GetRegisterPage()
+        {
+            var homePage = _contentLoader.Get<HomePage>(ContentReference.StartPage);
+            if (homePage != null && homePage.Settings != null && homePage.Settings.LoginPage != null)
+            {
+                var loginPage = _contentLoader.Get<LoginPage>(homePage.Settings.LoginPage);
+                if (loginPage != null && loginPage.RegisterPage != null)
+                    return _contentLoader.Get<RegisterPage>(loginPage.RegisterPage);
+            }
+            return null;
+        }
+
         public bool SendWelcomeEmail(string email, string subject, string body)
         {
-
             var mailSettings = _notificationSettingsRepository.GetNotificationSettings();
             if (mailSettings != null)
             {
@@ -103,15 +141,22 @@ namespace OxxCommerceStarterKit.Web.Services.Email
             return false;
         }
 
-        public bool SendOrderReceipt(PurchaseOrder order)
+        public bool SendOrderReceipt(PurchaseOrderModel order)
         {
             var mailSettings = _notificationSettingsRepository.GetNotificationSettings();
             if (mailSettings != null)
             {
-                var emailMessage = new Receipt(order);
+                IMarket market = _marketService.GetMarket(order.MarketId);
+                var emailMessage = new Receipt(market, order);
+                if (string.IsNullOrEmpty(mailSettings.From))
+                    throw new ArgumentException("Missing From address in email settings");
+                
                 emailMessage.From = mailSettings.From;
                 emailMessage.Header = mailSettings.MailHeader.ToString();
                 emailMessage.Footer = mailSettings.MailFooter.ToString();
+
+                if (string.IsNullOrEmpty(emailMessage.To))
+                    throw new ArgumentException("Missing To address");
 
                 var result = _emailDispatcher.SendEmail(emailMessage);
                 if (result.Success)
@@ -128,12 +173,12 @@ namespace OxxCommerceStarterKit.Web.Services.Email
             return false;
         }
 
-        public bool SendDeliveryReceipt(PurchaseOrder order, string language = null)
+        public bool SendDeliveryReceipt(PurchaseOrderModel order, string language = null)
         {
             var mailSettings = _notificationSettingsRepository.GetNotificationSettings(language);
             if (mailSettings != null)
             {
-                var emailMessage = new DeliveryReceipt(order);
+                var emailMessage = new DeliveryReceipt(_currentMarket, order);
                 emailMessage.From = mailSettings.From;
                 emailMessage.Header = mailSettings.MailHeader.ToString();
                 emailMessage.Footer = mailSettings.MailFooter.ToString();

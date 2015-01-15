@@ -23,7 +23,18 @@ namespace OxxCommerceStarterKit.Web.Services.Email.Models
             criteria.Value = contentTypeRepository.Load("NotificationSettings").ID.ToString();
             criteria.Required = true;
             criterias.Add(criteria);
-            var page = language == null ? pageCriteriaQueryService.FindPagesWithCriteria(PageReference.StartPage, criterias).FirstOrDefault() : pageCriteriaQueryService.FindPagesWithCriteria(PageReference.StartPage, criterias, language).FirstOrDefault();
+            // TODO: We should not search for settings, point to it from the start page instead.
+            PageData page;
+            if (language == null)
+            {
+                page = pageCriteriaQueryService.FindPagesWithCriteria(ContentReference.StartPage, criterias).FirstOrDefault();
+                
+            }
+            else
+            {
+                page = pageCriteriaQueryService.FindPagesWithCriteria(ContentReference.StartPage, criterias, language).FirstOrDefault();
+                
+            }
             if (page is NotificationSettings)
             {
                 return (NotificationSettings)page;

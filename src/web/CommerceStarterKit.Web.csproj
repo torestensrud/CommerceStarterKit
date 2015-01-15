@@ -1026,6 +1026,8 @@
     <Compile Include="Api\ArticleSearchController.cs" />
     <Compile Include="Api\AutocompleteSearchController.cs" />
     <Compile Include="Api\BaseApiController.cs" />
+    <Compile Include="Api\DeliveryLocationsController.cs" />
+    <Compile Include="Api\StreetAddress.cs" />
     <Compile Include="Api\TagController.cs" />
     <Compile Include="Api\CartController.cs" />
     <Compile Include="Api\CheckoutController.cs" />
@@ -1056,6 +1058,7 @@
     <Compile Include="Business\ContentExtensions.cs" />
     <Compile Include="Business\CurrentMarketFromStartPage.cs" />
     <Compile Include="Business\CurrentMarketProfile.cs" />
+    <Compile Include="Business\Delivery\DeliveryLocation.cs" />
     <Compile Include="Business\Initialization\CatalogEventListener.cs" />
     <Compile Include="Business\Initialization\CommerceCachePrimer.cs" />
     <Compile Include="Business\Initialization\CustomizedRenderingInitialization.cs" />
@@ -1064,7 +1067,10 @@
     <Compile Include="Business\Initialization\IndexingEventInitialization.cs" />
     <Compile Include="Business\Initialization\MetadataInitialization.cs" />
     <Compile Include="Business\Initialization\SearchFieldInitialization.cs" />
+    <Compile Include="Business\ISiteSettingsProvider.cs" />
     <Compile Include="Business\PageContextActionFilter.cs" />
+    <Compile Include="Business\Payment\IStockUpdater.cs" />
+    <Compile Include="Business\Payment\StockUpdater.cs" />
     <Compile Include="Business\Rendering\ICustomCssInContentArea.cs" />
     <Compile Include="Business\Rendering\IDefaultDisplayOption.cs" />
     <Compile Include="Business\Rendering\ContentAreaWithDefaultsRenderer.cs" />
@@ -1080,12 +1086,24 @@
     <Compile Include="Api\ImportEPiServerDataController.cs" />
     <Compile Include="Controllers\Admin\DeveloperToolsController.cs" />
     <Compile Include="Controllers\BasePartialContentController.cs" />
+    <Compile Include="Business\Payment\DibsPaymentProcessingResult.cs" />
+    <Compile Include="Business\Payment\DibsPaymentProcessor.cs" />
     <Compile Include="Controllers\GenericPaymentController.cs" />
     <Compile Include="Controllers\FashionProductPartialController.cs" />
+    <Compile Include="Business\ClientTracking\GoogleAnalyticsTracker.cs" />
+    <Compile Include="Business\Payment\IDibsPaymentProcessor.cs" />
+    <Compile Include="Business\ClientTracking\IGoogleAnalyticsTracker.cs" />
+    <Compile Include="IHttpContextProvider.cs" />
+    <Compile Include="Business\Payment\IPaymentCompleteHandler.cs" />
+    <Compile Include="Controllers\IReceiptViewModelBuilder.cs" />
+    <Compile Include="Business\Payment\PaymentCompleteHandler.cs" />
+    <Compile Include="ModelBuilders\ReceiptViewModelBuilder.cs" />
     <Compile Include="Controllers\VideoFileController.cs" />
     <Compile Include="EditorDescriptors\TinyMcePlugins\AllowExtendedAttributes.cs" />
     <Compile Include="Extensions\PriceExtensions.cs" />
     <Compile Include="Extensions\UrlExtentions.cs" />
+    <Compile Include="HttpContextIdentityProvider.cs" />
+    <Compile Include="IIdentityProvider.cs" />
     <Compile Include="Models\Files\VideoFile.cs" />
     <Compile Include="Models\PageTypes\Payment\BasePaymentPage.cs" />
     <Compile Include="Models\PageTypes\Payment\GenericPaymentPage.cs" />
@@ -1283,7 +1301,6 @@
     <Compile Include="Services\Email\EmailDispatcher.cs" />
     <Compile Include="Services\Email\EmailService.cs" />
     <Compile Include="Services\Email\IEmailDispatcher.cs" />
-    <Compile Include="Services\Email\IEmailService.cs" />
     <Compile Include="Services\Email\INotificationSettingsRepository.cs" />
     <Compile Include="Services\Email\Models\DeliveryReceipt.cs" />
     <Compile Include="Services\Email\Models\EmailBase.cs" />
@@ -1294,7 +1311,9 @@
     <Compile Include="Services\Email\Models\SendEmailResponse.cs" />
     <Compile Include="Services\Email\Models\Welcome.cs" />
     <Compile Include="Models\ViewModels\Contracts\IProductListViewModelInitializer.cs" />
+    <Compile Include="Services\PostNord\IPostNordClient.cs" />
     <Compile Include="Services\PostNord\PostNord.cs" />
+    <Compile Include="Services\PostNord\PostNordClient.cs" />
     <Compile Include="Services\ProductService.cs" />
   </ItemGroup>
   <ItemGroup>
