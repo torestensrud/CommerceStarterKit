@@ -4068,14 +4068,11 @@
     <Content Include="episerverlog.config" />
     <Content Include="packages.config" />
     <Content Include="modulesbin\readme.config" />
-    <Content Include="connectionStrings.TestCloud.config">
-      <DependentUpon>connectionStrings.config</DependentUpon>
-      <IsTransformFile>True</IsTransformFile>
-    </Content>
     <Content Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
     <Content Include="EPiServerFramework.config">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Properties\PublishProfiles\mw-commercestarterkit-cm.pubxml" />
     <None Include="Properties\PublishProfiles\Temp.pubxml" />
   </ItemGroup>
   <ItemGroup>
