@@ -56,17 +56,18 @@ namespace OxxCommerceStarterKit.Web.Services.Email
             output.Success = true;
 
 #if !DEBUG
-			}
+            }
 
 
-			catch (Exception ex)
-			{
-				log.Error(ex);
-				output.Exception = ex;
-			}
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                output.Exception = ex;
+            }
 
 #endif
             return output;
         }
     }
+
 }

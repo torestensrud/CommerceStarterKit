@@ -19,6 +19,7 @@ using System.Web.Routing;
 using EPiServer.Logging;
 using EPiServer.ServiceLocation;
 using EPiServer.Web;
+using OxxCommerceStarterKit.Web.Controllers;
 
 
 namespace OxxCommerceStarterKit.Web
@@ -136,7 +137,7 @@ namespace OxxCommerceStarterKit.Web
 		}
 #endif
 
-		/// <summary>
+        /// <summary>
 		/// Tags to use for the main widths used in the Bootstrap HTML framework
 		/// </summary>
 		public static class ContentAreaTags
