@@ -301,7 +301,7 @@
 
 		$scope.moveToWishlist = function(product) {
 			$scope.showLoader();
-			handleCartService.moveToWishlist(product).$promise.then(function (data) {
+			handleCartService.moveToWishlist($scope.language, product).$promise.then(function (data) {
 				getCartInfoFromResponse(data);
 				commercestarterkit.retrieveCartCounters();
 			}, function () {

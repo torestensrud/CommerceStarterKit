@@ -1,10 +1,14 @@
-﻿@model OxxCommerceStarterKit.Web.Controllers.WineProductSearchBlockController.WineProductSearchResult
+﻿@using OxxCommerceStarterKit.Web.Helpers
+@model OxxCommerceStarterKit.Web.Controllers.WineProductSearchBlockController.WineProductSearchResult
 
 @{
     Layout = null;
 }
 <div class="product-list">
-    <h2>@Model.Heading</h2>
+
+    
+    <h2>@Html.PropertyFor(p => p.Heading)</h2>
+
     @foreach (var product in Model.Products)
     {
         <div class="col-sm-4">
