@@ -127,16 +127,23 @@
     <Content Include="modules\epicode.newsletter\content\js\jquery-2.0.3.min.js" />
     <Content Include="modules\epicode.newsletter\content\js\jsrender.js" />
     <Content Include="modules\epicode.newsletter\content\js\jsrender.min.js" />
+    <Content Include="modules\epicode.newsletter\plugin\Admin\NewsLetterInstall.aspx" />
     <Content Include="modules\epicode.newsletter\plugin\Admin\SendPageAsMailConfig.ascx" />
     <Content Include="modules\epicode.newsletter\plugin\GettingStarted.ascx" />
+    <Content Include="modules\epicode.newsletter\plugin\GettingStarted.aspx" />
     <Content Include="modules\epicode.newsletter\plugin\Jobs\AddWorkItems.ascx" />
     <Content Include="modules\epicode.newsletter\plugin\Jobs\CreateJob.ascx" />
     <Content Include="modules\epicode.newsletter\plugin\Jobs\EnvironmentVerification.ascx" />
     <Content Include="modules\epicode.newsletter\plugin\Jobs\JobEdit.ascx" />
+    <Content Include="modules\epicode.newsletter\plugin\Jobs\JobEdit.aspx" />
     <Content Include="modules\epicode.newsletter\plugin\Jobs\JobEditStandAlone.aspx" />
+    <Content Include="modules\epicode.newsletter\plugin\Jobs\JobStatus.ascx" />
     <Content Include="modules\epicode.newsletter\plugin\Jobs\MiscActions.ascx" />
     <Content Include="modules\epicode.newsletter\plugin\Jobs\RemoveWorkItems.ascx" />
     <Content Include="modules\epicode.newsletter\plugin\Jobs\WorkItemsEdit.aspx" />
+    <Content Include="modules\epicode.newsletter\plugin\Lists.aspx" />
+    <Content Include="modules\epicode.newsletter\plugin\Newsletters.aspx" />
+    <Content Include="modules\epicode.newsletter\plugin\PluginStyles.ascx" />
     <Content Include="modules\epicode.newsletter\plugin\RecipientItemProviders\EPiServerGroupProvider.ascx" />
     <Content Include="modules\epicode.newsletter\plugin\RecipientItemProviders\RecipientProvider.ascx" />
     <Content Include="modules\epicode.newsletter\plugin\RecipientItemProviders\TextImportProvider.ascx" />
@@ -179,12 +186,6 @@
     <Content Include="modules\_protected\EPiServer.Commerce.UI\EPiServer.Commerce.UI.zip" />
     <Content Include="modules\_protected\EPiServer.Commerce.Shell\EPiServer.Commerce.Shell.zip" />
     <Content Include="modules\BVNetwork.FileNotFound.RedirectGadget\Views\Web.config" />
-    <Content Include="modules\epicode.newsletter\plugin\Web.config" />
-    <Content Include="modules\epicode.newsletter\module.config" />
-    <Content Include="modules\epicode.newsletter\content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="modules\epicode.newsletter\content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="modules\epicode.newsletter\content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="modules\epicode.newsletter\content\css\newsletterstyle.less" />
     <Content Include="modules\_protected\EPiServer.Packaging.UI\web.config" />
     <Content Include="modules\_protected\EPiServer.Packaging.UI\EPiServer.Packaging.UI.zip" />
     <Content Include="modules\_protected\EPiServer.VisitorGroupsCriteriaPack\module.config" />
@@ -198,6 +199,12 @@
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics\module.config" />
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics\EPiServerGoogleAnalytics.config" />
     <Content Include="modules\_protected\EPiServer.GoogleAnalytics\EPiServer.GoogleAnalytics.zip" />
+    <Content Include="modules\epicode.newsletter\plugin\Web.config" />
+    <Content Include="modules\epicode.newsletter\module.config" />
+    <Content Include="modules\epicode.newsletter\content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="modules\epicode.newsletter\content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="modules\epicode.newsletter\content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="modules\epicode.newsletter\content\css\newsletterstyle.less" />
     <None Include="Plugins\CommerceTools\static\scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Plugins\CommerceTools\static\scripts\jquery-1.9.0.js" />
     <Content Include="Plugins\CommerceTools\static\scripts\jquery-1.9.0.min.js" />
@@ -326,13 +333,6 @@
     <Content Include="modules\BVNetwork.FileNotFound.RedirectGadget\Views\Redirect\Redirects.ascx" />
     <Content Include="modules\BVNetwork.FileNotFound.RedirectGadget\Views\Redirect\Referers.ascx" />
     <Content Include="modules\BVNetwork.FileNotFound.RedirectGadget\Views\Redirect\Suggestions.ascx" />
-    <Content Include="modules\epicode.newsletter\plugin\Admin\NewsLetterInstall.aspx" />
-    <Content Include="modules\epicode.newsletter\plugin\GettingStarted.aspx" />
-    <Content Include="modules\epicode.newsletter\plugin\Jobs\JobEdit.aspx" />
-    <Content Include="modules\epicode.newsletter\plugin\Jobs\JobStatus.ascx" />
-    <Content Include="modules\epicode.newsletter\plugin\Lists.aspx" />
-    <Content Include="modules\epicode.newsletter\plugin\Newsletters.aspx" />
-    <Content Include="modules\epicode.newsletter\plugin\PluginStyles.ascx" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
@@ -608,9 +608,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\BVNetwork.EPi404.dll</HintPath>
     </Reference>
-    <Reference Include="BVNetwork.EPiSendMail, Version=3.0.8.15222, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="BVNetwork.EPiSendMail, Version=3.0.8.25226, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\EPiCode.Newsletter.3.0.9\lib\net45\BVNetwork.EPiSendMail.dll</HintPath>
+      <HintPath>..\..\packages\EPiCode.Newsletter.3.0.10\lib\net451\BVNetwork.EPiSendMail.dll</HintPath>
     </Reference>
     <Reference Include="BVNetwork.EPiSendMail.CommerceProvider, Version=3.0.8.22951, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
