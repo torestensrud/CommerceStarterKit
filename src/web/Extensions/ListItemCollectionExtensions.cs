@@ -153,6 +153,38 @@ namespace OxxCommerceStarterKit.Web.Extensions
 			}
 		}
 
+        /// <summary>
+        /// Converts a LinkItemCollection to typed content. Any non-pages will be filtered out. 
+        /// </summary>
+        /// <typeparam name="T">Content Type</typeparam>
+        /// <param name="linkItemCollection">The collection of links to convert</param>
+        /// <returns>An enumerable of typed ContentData</returns>
+        public static IEnumerable<T> ToContent<T>(this LinkItemCollection linkItemCollection) where T : ContentData
+        {
+            var contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
+
+            if (linkItemCollection != null)
+            {
+                foreach (var linkItem in linkItemCollection)
+                {
+                    var url = new UrlBuilder(linkItem.Href);
+                    if (PermanentLinkMapStore.ToMapped(url))
+                    {
+                        var pr = PermanentLinkUtility.GetContentReference(url);
+                        if (!ContentReference.IsNullOrEmpty(pr))
+                        {
+                            var page = contentLoader.Get<ContentData>(pr);
+                            if (page is T)
+                            {
+                                yield return (T)page;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
 		/// <summary>
 		/// Converts a LinkItemCollection to typed pages. Any non-pages will be filtered out. (PageList compatible)
 		/// </summary>
