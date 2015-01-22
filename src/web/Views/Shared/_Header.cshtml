@@ -16,7 +16,7 @@
 <div class="header">
     <div class="container">
         <div class="top-menus">
-            <nav role="navigation" class="menu-top menu-top-left">
+            <nav role="navigation" class="menu-top menu-top-left hidden-xs">
                 <ul class="nav navbar-nav navbar-left">
                     <li>
                         @if (this.User.Identity.IsAuthenticated)
@@ -34,11 +34,11 @@
                     }
                 </ul>
             </nav>
-            <nav role="navigation" class="menu-top menu-top-right">
+            <nav role="navigation" class="menu-top menu-top-right hidden-xs">
                 <ul class="nav navbar-nav navbar-right">
                     @Html.Partial("_TopMenu", Model.TopRightMenu, new ViewDataDictionary() { { "ShowCountsOnLinks", true } })
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="@selectedLanguage.IconUrl"/>&nbsp;@selectedLanguage.DisplayName <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="@selectedLanguage.IconUrl" />&nbsp;@selectedLanguage.DisplayName <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             @foreach (var langInfo in Model.Languages)
                             {
@@ -52,12 +52,13 @@
                                     {
                                         <li><a href="@langInfo.EditUrl" target="_top"><img src="@langInfo.IconUrl" />&nbsp;@langInfo.DisplayName</a></li>
                                     }
-                                 }
+                                }
                             }
                         </ul>
                     </li>
                 </ul>
             </nav>
+
         </div>
         <div class="logo">
             <a href="/@logoLinkUrl"><img class="img-responsive" src="@Model.LogoImageUrl" alt="Logo"></a>

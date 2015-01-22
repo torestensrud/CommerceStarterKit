@@ -1,10 +1,14 @@
-﻿@using OxxCommerceStarterKit.Web.Extensions
+﻿@using EPiServer.ServiceLocation
+@using OxxCommerceStarterKit.Web.Extensions
 @using OxxCommerceStarterKit.Web.Models.ViewModels.Simple
+@using OxxCommerceStarterKit.Web.Services
 @model OxxCommerceStarterKit.Web.Models.Catalog.FashionProductContent
 @{
 	Layout = null;
-	
-	var product = new Product(Model);
+
+    // TODO: Hack - should change model to this one
+    var productService = ServiceLocator.Current.GetInstance<ProductService>();
+    var product = productService.GetProductListViewModel(Model);
 	var image = Html.AssetImageUrls(Model).FirstOrDefault();
 	if (image.Contains(","))
 	{
@@ -26,8 +30,8 @@
 		</a>
 	</div>
 	<div class="newitemtext">@Model.NewItemText &nbsp;</div>
-	<h2 class="name">@product.Name</h2>
-	<div class="price">
-		@Html.Partial("_Price", new PriceModel(product.Price), new ViewDataDictionary(this.ViewData) { { "hideText", true } })
-	</div>
+	<h2 class="name">@Model.DisplayName</h2>
+    <div class="price">
+        @product.PriceString
+    </div>
 </center>

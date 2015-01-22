@@ -1064,6 +1064,7 @@
     <Compile Include="Business\Initialization\CustomizedRenderingInitialization.cs" />
     <Compile Include="Business\Initialization\CustomModelMetadataProvider.cs" />
     <Compile Include="Business\Initialization\DependencyResolverInitialization.cs" />
+    <Compile Include="Business\Initialization\DisplayModesInitialization.cs" />
     <Compile Include="Business\Initialization\IndexingEventInitialization.cs" />
     <Compile Include="Business\Initialization\MetadataInitialization.cs" />
     <Compile Include="Business\Initialization\SearchFieldInitialization.cs" />
