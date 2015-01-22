@@ -8,14 +8,17 @@ Copyright (C) 2013-2014 BV Network AS
 
 */
 
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using EPiServer;
+using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Core;
 using EPiServer.ServiceLocation;
 using EPiServer.SpecializedProperties;
 using EPiServer.Web.Mvc;
+using OxxCommerceStarterKit.Web.Extensions;
 using OxxCommerceStarterKit.Web.Models.PageTypes;
 using OxxCommerceStarterKit.Web.Models.ViewModels;
 
@@ -23,7 +26,14 @@ namespace OxxCommerceStarterKit.Web.Controllers
 {
 	public class ShoppingCategoryController : PageController<ShoppingCategoryPage>
 	{
-		IContentLoader contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
+	    private const int DefaultNumProductsInList = 9;
+	    private readonly IContentLoader _contentLoader;
+
+	    public ShoppingCategoryController(IContentLoader contentLoader)
+	    {
+	        _contentLoader = contentLoader;
+	    }
+
 		public ActionResult Index(ShoppingCategoryPage currentPage)
 		{
 			var model = new ShoppingCategoryViewModel(currentPage);
@@ -33,17 +43,19 @@ namespace OxxCommerceStarterKit.Web.Controllers
 		    {
 		        model.CommerceCategoryIds = GetCommerceNodeIds(currentPage);
 		    }
-			model.NumberOfProductsToShow = currentPage.NumberOfProductsToShow > 0 ? currentPage.NumberOfProductsToShow : 9;
+
+			model.NumberOfProductsToShow = currentPage.NumberOfProductsToShow > 0 ? currentPage.NumberOfProductsToShow : DefaultNumProductsInList;
 
 			if (currentPage.ParentLink != null)
 			{
 				var languageSelector = new LanguageSelector(model.Language);
-				var parent = contentLoader.Get<IContent>(currentPage.ParentLink, languageSelector);
+                var parent = _contentLoader.Get<IContent>(currentPage.ParentLink, languageSelector);
 				ShoppingCategoryPage topNode = null;
+
 				while (!(parent is HomePage))
 				{
 					topNode = parent as ShoppingCategoryPage;
-					parent = contentLoader.Get<IContent>(parent.ParentLink, languageSelector);
+                    parent = _contentLoader.Get<IContent>(parent.ParentLink, languageSelector);
 				}
 
 				if (topNode == null && parent is HomePage)
@@ -54,7 +66,7 @@ namespace OxxCommerceStarterKit.Web.Controllers
 				if (topNode != null)
 				{
 					model.ParentName = topNode.Name;
-					model.CategoryPages = contentLoader.GetChildren<ShoppingCategoryPage>(topNode.ContentLink);
+                    model.CategoryPages = _contentLoader.GetChildren<ShoppingCategoryPage>(topNode.ContentLink);
 					model.CommerceRootCategoryName = GetCommerceNodeNames(topNode);
 				}
 			}
@@ -63,7 +75,7 @@ namespace OxxCommerceStarterKit.Web.Controllers
 		}
 		private string GetMainCategoryFromParentPage(ContentReference parentReference, CultureInfo languageInfo)
 		{
-			var parentPage = contentLoader.Get<PageData>(parentReference, new LanguageSelector(languageInfo.Name)) as ShoppingCategoryPage;
+            var parentPage = _contentLoader.Get<PageData>(parentReference, new LanguageSelector(languageInfo.Name)) as ShoppingCategoryPage;
 		    if (parentPage != null)
 		    {
 				return GetCommerceNodeNames(parentPage);
@@ -73,30 +85,58 @@ namespace OxxCommerceStarterKit.Web.Controllers
 
 		private string GetCommerceNodeNames(ShoppingCategoryPage pageData)
 		{
-			if (pageData.CatalogNodes != null)
-			{
-				return string.Join(",", pageData.CatalogNodes.Select(x => x.Text).ToArray());
-			}
-			return string.Empty;
+		    List<string> nodeNames = new List<string>();
+
+            // We need to load the catalog nodes, and get the name from them
+            // since the link text in the CatalogNodes Link Item Collection is
+            // not updated if the node changes name or code.
+            // Fixes: https://github.com/OXXAS/CommerceStarterKit/issues/21
+		    IEnumerable<NodeContent> nodeContents = pageData.CatalogNodes.ToContent<NodeContent>();
+		    foreach (NodeContent nodeContent in nodeContents)
+		    {
+		        nodeNames.Add(nodeContent.Name);
+		    }
+
+		    return string.Join(",", nodeNames);
 		}
+
+        private List<ContentReference> GetCommerceNodeIdList(ShoppingCategoryPage pageData)
+        {
+            List<ContentReference> idList = new List<ContentReference>();
+
+            if (pageData.CatalogNodes != null)
+            {
+                
+                foreach (LinkItem catalogNodeLinkItem in pageData.CatalogNodes)
+                {
+                    string linkUrl;
+                    if (!EPiServer.Web.PermanentLinkMapStore.TryToMapped(catalogNodeLinkItem.Href, out linkUrl))
+                        continue;
+
+                    if (string.IsNullOrEmpty(linkUrl))
+                        continue;
+
+                    ContentReference contentReference = PageReference.ParseUrl(linkUrl);
+                    if(ContentReference.IsNullOrEmpty(contentReference) == false)
+                    {
+                        idList.Add(contentReference);
+                    }
+
+                }
+            }
+            return idList;
+        }
 
 		private string GetCommerceNodeIds(ShoppingCategoryPage pageData)
 	    {
-            if (pageData.CatalogNodes != null)
+		    List<ContentReference> idList = GetCommerceNodeIdList(pageData);
+
+            if (idList.Any())
             {
                 string commerceCategories = string.Empty;
-                foreach (LinkItem catalogNodeLinkItem in pageData.CatalogNodes)
+                foreach (ContentReference reference in idList)
                 {
-					string linkUrl;
-					if (!EPiServer.Web.PermanentLinkMapStore.TryToMapped(catalogNodeLinkItem.Href, out linkUrl))
-						continue;
-
-					if (string.IsNullOrEmpty(linkUrl))
-						continue;
-
-					PageReference pageReference = PageReference.ParseUrl(linkUrl);
-
-					string id = pageReference.ID.ToString();
+                    string id = reference.ID.ToString();
 
 					if (string.IsNullOrEmpty(commerceCategories))
 					{
