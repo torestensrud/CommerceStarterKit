@@ -20,6 +20,7 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Commerce.Routing;
 using EPiServer.Core;
+using EPiServer.Events.ChangeNotification;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.HtmlParsing;
@@ -159,6 +160,7 @@ namespace OxxCommerceStarterKit.Web.Business.Initialization
             context.Container.Configure(c => c.For<IHttpContextProvider>().Singleton().Use<HttpContextProvider>());
             context.Container.Configure(c => c.For<IPostNordClient>().Singleton().Use<PostNordClient>());
             context.Container.Configure(c => c.For<IStockUpdater>().Use<StockUpdater>());
+            context.Container.Configure(c => c.For<IChangeProcessor>().Singleton().Add<FindCatalogIndexingChangeNotificationProcessor>());
         }
     }
 }

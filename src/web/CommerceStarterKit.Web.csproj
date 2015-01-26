@@ -1061,6 +1061,7 @@
     <Compile Include="Business\Delivery\DeliveryLocation.cs" />
     <Compile Include="Business\Initialization\CatalogEventListener.cs" />
     <Compile Include="Business\Initialization\CommerceCachePrimer.cs" />
+    <Compile Include="Business\Initialization\FindCatalogIndexingChangeNotificationProcessor.cs" />
     <Compile Include="Business\Initialization\CustomizedRenderingInitialization.cs" />
     <Compile Include="Business\Initialization\CustomModelMetadataProvider.cs" />
     <Compile Include="Business\Initialization\DependencyResolverInitialization.cs" />
