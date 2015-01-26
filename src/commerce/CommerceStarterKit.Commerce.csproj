@@ -4754,14 +4754,6 @@
       <Project>{01a92f8f-e704-4f78-8dca-67e76b8a6ccf}</Project>
       <Name>CommerceStarterKit.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\common\Mediachase.Commerce.Workflow.Activities\EPiCode.Commerce.Workflow.Activities.csproj">
-      <Project>{b7957825-3e86-4ea6-8cf3-9bdf7dc8c7a6}</Project>
-      <Name>EPiCode.Commerce.Workflow.Activities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\common\Mediachase.Commerce.Workflow\EPiCode.Commerce.Workflow.csproj">
-      <Project>{413287f6-d606-4f42-ba25-4377a2c581f9}</Project>
-      <Name>EPiCode.Commerce.Workflow</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apps\Catalog\PriceValueDto1.Designer.cs">
