@@ -144,7 +144,6 @@
                     DataValueField="Name">
                     <asp:ListItem Value="Disabled" Text="<%$ Resources:SharedStrings, Disabled %>"></asp:ListItem>
                     <asp:ListItem Value="Enabled" Text="<%$ Resources:SharedStrings, Enabled %>"></asp:ListItem>
-                    <asp:ListItem Value="Ignored" Text="<%$ Resources:SharedStrings, Ignored %>"></asp:ListItem>
                 </asp:DropDownList>
             </td>
         </tr>
