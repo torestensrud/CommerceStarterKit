@@ -20,27 +20,18 @@ using EPiServer;
 using EPiServer.Core;
 using EPiServer.Logging;
 using EPiServer.ServiceLocation;
-using OxxCommerceStarterKit.Core.Email;
+using log4net;
 using OxxCommerceStarterKit.Web.Models.PageTypes;
 using OxxCommerceStarterKit.Web.Models.ViewModels;
-using OxxCommerceStarterKit.Web.Services.Email;
+using LogManager = log4net.LogManager;
 
 namespace OxxCommerceStarterKit.Web.Controllers
 {
     public class ErrorController : PageControllerBase<PageData>
     {
-
-        private log4net.ILog log = log4net.LogManager.GetLogger(typeof (ErrorController));
- 
-       
-
         // GET: Error404
         public ActionResult Error404()
         {
-
-     
-
-
 			ErrorPageViewModel model = GetViewModel();
 
 			model.Referer = HttpContext.Request.UrlReferrer;
@@ -83,56 +74,11 @@ namespace OxxCommerceStarterKit.Web.Controllers
 				HttpContext == null || (HttpContext != null && !HttpContext.Request.Url.ToString().EndsWith("/find_v2/"))))
 			{
 				_log.Error(exception.Message,exception);
-
-				//NotifyDeveloper("", exception);
 			}
 
 
 
 			return View("Error500", model);
-		}
-
-
-		public void NotifyDeveloper(string error, Exception exception)
-		{
-			try
-			{
-				string message = "", server = "", domain = "";
-				if (HttpContext != null)
-				{
-					domain = HttpContext.Request.Url.Host;
-					server = HttpContext.Server.MachineName;
-					message = ""
-						+ "Server: " + server + "<br />"
-						+ "Domain: " + domain + "<br />"
-						+ "Url: " + HttpContext.Request.Url + "<br />";
-				}
-				else
-				{
-					server = Environment.MachineName;
-					domain = "-";
-				}
-				message += " Exception: <b>" + exception.Message + "</b><br />"
-					+ "Message: <b>" + error + "</b><br />"
-					+ "Stack Trace: " + exception.StackTrace + "<br />";
-
-				string to = "";
-				string subject = server + " - " + domain + " - Notify developer";
-
-				// This should be moved to a configuration setting somewhere
-				if (server == "servername1") to = "administrator@somedomain.com";
-				if (server == "developerpc1") to = "developer@somedomain.com";
-
-				if (!string.IsNullOrEmpty(to))
-				{
-					var emailService = ServiceLocator.Current.GetInstance<IEmailService>();
-					emailService.SendWelcomeEmail(to, subject, message);
-				}
-			}
-			catch (Exception ex)
-			{
-				_log.Error("Unable to notify deloper about 500 error", ex);
-			}
 		}
 
 		/// <summary>
