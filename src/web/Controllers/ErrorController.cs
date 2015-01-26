@@ -84,7 +84,7 @@ namespace OxxCommerceStarterKit.Web.Controllers
 			{
 				_log.Error(exception.Message,exception);
 
-				NotifyDeveloper("", exception);
+				//NotifyDeveloper("", exception);
 			}
 
 
@@ -116,14 +116,18 @@ namespace OxxCommerceStarterKit.Web.Controllers
 					+ "Message: <b>" + error + "</b><br />"
 					+ "Stack Trace: " + exception.StackTrace + "<br />";
 
-				string to = "eros@oxx.no";
+				string to = "";
 				string subject = server + " - " + domain + " - Notify developer";
 
-				if (server == "PC-EMMU-1") to = "emmu@oxx.no";
-				if (server == "PC-EROS-1" || server == "PC-EROS-2") to = "eros@oxx.no";
+				// This should be moved to a configuration setting somewhere
+				if (server == "servername1") to = "administrator@somedomain.com";
+				if (server == "developerpc1") to = "developer@somedomain.com";
 
-				var emailService = ServiceLocator.Current.GetInstance<IEmailService>();
-				emailService.SendWelcomeEmail(to, subject, message);
+				if (!string.IsNullOrEmpty(to))
+				{
+					var emailService = ServiceLocator.Current.GetInstance<IEmailService>();
+					emailService.SendWelcomeEmail(to, subject, message);
+				}
 			}
 			catch (Exception ex)
 			{
