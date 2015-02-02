@@ -1066,12 +1066,13 @@
     <Compile Include="Business\Delivery\DeliveryLocation.cs" />
     <Compile Include="Business\Initialization\CatalogEventListener.cs" />
     <Compile Include="Business\Initialization\CommerceCachePrimer.cs" />
-    <Compile Include="Business\Initialization\FindCatalogIndexingChangeNotificationProcessor.cs" />
+    <Compile Include="Business\FindCatalogIndexingChangeNotificationProcessor.cs" />
     <Compile Include="Business\Initialization\CustomizedRenderingInitialization.cs" />
     <Compile Include="Business\Initialization\CustomModelMetadataProvider.cs" />
     <Compile Include="Business\Initialization\DependencyResolverInitialization.cs" />
     <Compile Include="Business\Initialization\DisplayModesInitialization.cs" />
     <Compile Include="Business\Initialization\IndexingEventInitialization.cs" />
+    <Compile Include="Business\Initialization\FindCatalogIndexingChangeNotificationInitialization.cs" />
     <Compile Include="Business\Initialization\MetadataInitialization.cs" />
     <Compile Include="Business\Initialization\SearchFieldInitialization.cs" />
     <Compile Include="Business\ISiteSettingsProvider.cs" />
