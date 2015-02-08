@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using EPiServer.Events.ChangeNotification;
 using EPiServer.Logging;
 using Mediachase.Commerce.Catalog;
-using Mediachase.Commerce.Core;
-using Mediachase.Commerce.Core.Dto;
-using Mediachase.Search;
 
-namespace OxxCommerceStarterKit.Web.Business.Initialization
+namespace OxxCommerceStarterKit.Web.Business
 {
     public class FindCatalogIndexingChangeNotificationProcessor : IChangeProcessor<string>
     {
@@ -47,9 +43,7 @@ namespace OxxCommerceStarterKit.Web.Business.Initialization
         private static readonly Guid _processorId = new Guid("ea403de2-c91d-4675-a82e-ac087ea368de");
         private static readonly IChangeListener _changeListener = new CatalogEntryChangeListener();
         private static readonly TimeSpan _retryInterval = TimeSpan.FromSeconds(30);
-        private static readonly int _maxBatchSize = 2;
-
-
+        private static readonly int _maxBatchSize = 5;
 
         public static Guid ProcessorId
         {
