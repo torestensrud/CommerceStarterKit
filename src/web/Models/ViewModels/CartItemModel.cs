@@ -43,9 +43,9 @@ namespace OxxCommerceStarterKit.Web.Models.ViewModels
 		    {
 		        ImageUrl = _urlResolver.Service.GetUrl(media.AssetContentLink(_permanentLinkMapper.Service));
 		    }
-            //If variant does not have images, we get image from product
-		    else
+            else if (parent != null)
 		    {
+                //If variant does not have images, we get image from product
                 media = parent.GetCommerceMedia();
                 if(media != null)
                     ImageUrl = _urlResolver.Service.GetUrl(media.AssetContentLink(_permanentLinkMapper.Service));
