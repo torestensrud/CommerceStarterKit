@@ -47,6 +47,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="lang\" />
+    <Folder Include="modules\_protected\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Apps\Asset\Config\View\Asset-FileUpload.xml" />
@@ -2694,6 +2695,7 @@
     <Content Include="Apps\Order\GridTemplates\LineItemDiscountTemplate.ascx" />
     <Content Include="Apps\Order\GridTemplates\LineItemFulfillmentWarehouseTemplate.ascx" />
     <Content Include="Apps\Order\GridTemplates\ListPriceTemplate.ascx" />
+    <Content Include="Apps\Order\GridTemplates\OrderCustomerTemplate.ascx" />
     <Content Include="Apps\Order\GridTemplates\OrderLinkFromPaymentPlan.ascx" />
     <Content Include="Apps\Order\GridTemplates\OrderLinkTemplate.ascx" />
     <Content Include="Apps\Order\GridTemplates\OrderStatusTemplate.ascx" />
@@ -3662,6 +3664,9 @@
       <HintPath>..\..\packages\Castle.Windsor.3.2.0\lib\net45\Castle.Windsor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CMS">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.7.18.1\lib\net45\CMS.dll</HintPath>
+    </Reference>
     <Reference Include="ComponentArt.Web.UI, Version=2012.1.1016.35, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\EPiServer.CommerceManager.8.7.1\lib\net45\ComponentArt.Web.UI.dll</HintPath>
@@ -3681,6 +3686,21 @@
     <Reference Include="EPiServer.Business.Commerce, Version=8.7.1.466, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\EPiServer.Commerce.Core.8.7.1\lib\net45\EPiServer.Business.Commerce.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Cms.Shell.UI">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.7.18.1\lib\net45\EPiServer.Cms.Shell.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Commerce.Internal.Migration">
+      <HintPath>..\..\packages\EPiServer.Commerce.UI.8.7.1\lib\net45\EPiServer.Commerce.Internal.Migration.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Commerce.Shell">
+      <HintPath>..\..\packages\EPiServer.Commerce.UI.8.7.1\lib\net45\EPiServer.Commerce.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Commerce.Shell.ManagerIntegration">
+      <HintPath>..\..\packages\EPiServer.Commerce.UI.ManagerIntegration.8.7.1\lib\net45\EPiServer.Commerce.Shell.ManagerIntegration.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Commerce.UI">
+      <HintPath>..\..\packages\EPiServer.Commerce.UI.8.7.1\lib\net45\EPiServer.Commerce.UI.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.Configuration, Version=7.19.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -3729,6 +3749,13 @@
     <Reference Include="EPiServer.Shell, Version=7.19.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\EPiServer.Framework.7.19.2\lib\net45\EPiServer.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.Shell.UI">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.7.18.1\lib\net45\EPiServer.Shell.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="EPiServer.UI, Version=7.18.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.7.18.1\lib\net45\EPiServer.UI.dll</HintPath>
     </Reference>
     <Reference Include="EPiServer.Web.WebControls, Version=7.19.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -3864,6 +3891,9 @@
     <Reference Include="RssToolkit, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\EPiServer.CommerceManager.8.7.1\lib\net45\RssToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Shell">
+      <HintPath>..\..\packages\EPiServer.CMS.UI.Core.7.18.1\lib\net45\Shell.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
