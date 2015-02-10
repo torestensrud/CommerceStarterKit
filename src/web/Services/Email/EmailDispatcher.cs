@@ -61,7 +61,7 @@ namespace OxxCommerceStarterKit.Web.Services.Email
 
 			catch (Exception ex)
 			{
-				log.Error(ex);
+				//log.Error(ex);
 				output.Exception = ex;
 			}
 

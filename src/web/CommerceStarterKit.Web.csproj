@@ -161,6 +161,31 @@
     <Content Include="modules\epicode.newsletter\plugin\WorkItemProviders\TextImportProvider.ascx" />
     <Content Include="modules\epicode.newsletter\plugin\WorkItemProviders\TextRemoveProvider.ascx" />
     <Content Include="modules\epicode.newsletter\preview.aspx" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\EPiServer.Labs.LanguageManager.css" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Images\compareLanguage.png" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Images\emptyFlag.png" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\component\command\CommandBase.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\component\command\CompareWithMasterLanguage.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\component\command\CreateLanguageBranch.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\component\command\DeleteLanguageBranch.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\component\command\ManageWebsiteLanguages.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\component\command\OpenLanguageSettings.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\component\command\ReplaceLanguageBranch.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\component\command\Settings.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\component\command\ToggleEditingLanguageBranch.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\component\CompareEditing.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\component\LanguageManager.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\component\templates\CompareEditing.html" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\component\viewmodel\CompareEditingViewModel.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\component\viewmodel\LanguageManagerViewModel.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\LanguageManagerModule.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\widget\command\AutoTranslate.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\widget\command\DuplicateContent.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\widget\command\StartBlank.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\widget\CreateLanguageBranchSelector.js" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\1.1.0.75\ClientResources\Scripts\widget\templates\CreateLanguageBranchSelector.html" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\EmbeddedLangFiles\EPiServer.Labs.LanguageManager_EN.xml" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\Views\Setting\Index.aspx" />
     <Content Include="Plugins\CommerceTools\Prices\UpdatePrices.aspx" />
     <Content Include="Plugins\CommerceTools\static\css\bootstrap-datepicker.css" />
     <Content Include="Plugins\CommerceTools\static\css\bootstrap-datepicker3.css" />
@@ -205,6 +230,9 @@
     <Content Include="modules\_protected\CMS\web.config" />
     <Content Include="modules\_protected\CMS\EPiServer.Cms.Shell.UI.zip" />
     <Content Include="modules\_protected\EPiServer.Commerce.Shell.ManagerIntegration\EPiServer.Commerce.Shell.ManagerIntegration.zip" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\EPiServer.LanguageManager.config" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\module.config" />
+    <Content Include="modules\_protected\EPiServer.Labs.LanguageManager\Views\Shared\Site.Master" />
     <None Include="Plugins\CommerceTools\static\scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Plugins\CommerceTools\static\scripts\jquery-1.9.0.js" />
     <Content Include="Plugins\CommerceTools\static\scripts\jquery-1.9.0.min.js" />
@@ -378,7 +406,6 @@
     <Content Include="Scripts\jwplayer\jwplayer.js" />
     <Content Include="Scripts\jwplayer\player.swf" />
     <Content Include="Scripts\jwplayer\preview.jpg" />
-    <Content Include="Scripts\jwplayer\video.mp4" />
     <Content Include="Scripts\libraries\accounting.js" />
     <Content Include="Scripts\libraries\accounting.min.js" />
     <Content Include="Scripts\libraries\angular-resource.js" />
@@ -400,6 +427,7 @@
     <Content Include="module.config">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Properties\PublishProfiles\makingwaves-commerce-demo.pubxml" />
     <None Include="Properties\PublishProfiles\Temp.pubxml" />
     <None Include="Scripts\libraries\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\libraries\angular-mocks.js" />
@@ -557,6 +585,15 @@
     <Content Include="Views\WineProductSearchBlock\FindError.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\VideoFile.cshtml" />
     <Content Include="Views\GenericPayment\Index.cshtml" />
+    <None Include="web.Debug Jeeves.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -978,6 +1015,7 @@
     <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

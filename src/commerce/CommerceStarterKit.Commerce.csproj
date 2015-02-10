@@ -3890,6 +3890,7 @@
     <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
@@ -4074,13 +4075,19 @@
     <Content Include="episerverlog.config" />
     <Content Include="packages.config" />
     <Content Include="modulesbin\readme.config" />
-    <Content Include="connectionStrings.TestCloud.config">
-      <DependentUpon>connectionStrings.config</DependentUpon>
-      <IsTransformFile>True</IsTransformFile>
-    </Content>
     <Content Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
     <Content Include="EPiServerFramework.config" />
+    <None Include="Properties\PublishProfiles\makingwaves-commercemanager-demo.pubxml" />
     <None Include="Properties\PublishProfiles\Temp.pubxml" />
+    <None Include="web.Debug Jeeves.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Apps\Dashboard\Modules\PerformanceReport.rdlc" />

@@ -34,9 +34,9 @@ namespace OxxCommerceStarterKit.Web
 	    static WebGlobal()
 	    {
             // TODO: Remove this when you are not going to use LocalDb anymore.
-	        ILogger log = LogManager.GetLogger();
+	        //ILogger log = LogManager.GetLogger();
 	        DirectoryInfo dir = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory + @"\..\..\db\");
-            log.Debug("Setting data directory for Local DB to: " + dir.FullName);
+            //log.Debug("Setting data directory for Local DB to: " + dir.FullName);
             AppDomain.CurrentDomain.SetData("DataDirectory", dir.FullName);
 	    }
 
@@ -129,9 +129,9 @@ namespace OxxCommerceStarterKit.Web
 				}
 			}
 
-			IController errorsController = new ErrorController();
+			//IController errorsController = new ErrorController();
 			var rc = new RequestContext(new HttpContextWrapper(Context), routeData);
-			errorsController.Execute(rc);
+		//	errorsController.Execute(rc);
 
 		}
 #endif
